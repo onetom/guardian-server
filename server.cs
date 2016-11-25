@@ -98,6 +98,7 @@ public class Server {
       process_messages();
       Thread.Sleep(100);
     }
+    wssv.Stop();
   }
 
   public Server() {
@@ -114,7 +115,6 @@ public class Server {
     smart_timer = Stopwatch.StartNew();
     hardware_data = cpuid.get_monitor_report();
     smart_data = cpuid.get_smart_report();
-File.WriteAllText("hardware_data.json", JsonConvert.SerializeObject(hardware_data));
     fifo = new ConcurrentQueue<Message>();
     wssv = new WebSocketServer(Program.settings.port);
   }
