@@ -76,7 +76,7 @@ public class Server {
 
   void run_plugins() {
     foreach (string file in Program.settings.plugins) {
-      Program.log.add("plugin: " + file);
+      Program.log.add("plugin: " + file + "\n");
       Tools.run_process(file, "");
     }
   }

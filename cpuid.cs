@@ -3,26 +3,26 @@ using System.Collections.Generic;
 
 public class MB_report {
   public string name;
-  public List<double> fan_list;
-  public List<double> temp_list;
+  public List<dynamic> fan_list;
+  public List<dynamic> temp_list;
 }
 
 public class CPU_report {
   public string name;
-  public List<double> load_list;
-  public List<double> temp_list;
+  public List<dynamic> load_list;
+  public List<dynamic> temp_list;
 }
 
 public class HDD_report {
   public string name;
-  public List<double> temp_list;
+  public List<dynamic> temp_list;
 }
 
 public class GPU_report {
   public string name;
-  public List<double> fan_list;
-  public List<double> load_list;
-  public List<double> temp_list;
+  public List<dynamic> fan_list;
+  public List<dynamic> load_list;
+  public List<dynamic> temp_list;
 }
 
 public class Monitor_report {
@@ -138,7 +138,7 @@ class CPUID {
       ref extended_error_code);
   }
 
-  public List<double> get_sensor_list(int device_index, int sensor_class) {
+  public List<dynamic> get_sensor_list(int device_index, int sensor_class) {
     int sensor_index;
     int NbSensors;
     bool result;
@@ -148,7 +148,7 @@ class CPUID {
     float fValue = 0;
     float fMinValue = 0;
     float fMaxValue = 0;
-    var sensors = new List<double>();
+    var sensors = new List<dynamic>();
     NbSensors = pSDK.GetNumberOfSensors(device_index, sensor_class);
     for (sensor_index = 0; sensor_index < NbSensors; sensor_index += 1) {
       result = pSDK.GetSensorInfos(device_index,
@@ -161,7 +161,7 @@ class CPUID {
         ref fMinValue,
         ref fMaxValue);
       if (result == true) {
-        sensors.Add(Math.Round(fValue, 2));
+        sensors.Add(new List<dynamic> { sensorname, Math.Round(fValue, 2) });
       }
     }
     return sensors;
@@ -224,12 +224,8 @@ class CPUID {
       smart.attr_list = new List<List<dynamic>>();
       for (int attrib_index = 0; attrib_index < pSDK.GetHDDNumberOfAttributes(hdd_index); attrib_index += 1) {
         bool res = pSDK.GetHDDAttribute(hdd_index, attrib_index, ref id, ref flags, ref value, ref worst, data);
-        if (res) {
-          string name = attrib_index.ToString();
-          if (smart_names.ContainsKey(attrib_index)) {
-            name = smart_names[attrib_index];
-          }
-          smart.attr_list.Add(new List<dynamic> { name, id, flags, value, worst });
+        if (res && smart_names.ContainsKey(attrib_index)) {
+          smart.attr_list.Add(new List<dynamic> { smart_names[attrib_index], id, flags, value, worst });
         }
       }
       smart_list.Add(smart);

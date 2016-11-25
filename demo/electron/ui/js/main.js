@@ -55,7 +55,7 @@ function main() {
       var box = make_simple_box(title + i, name);
       var j = i;
       updaters.push(function (hw) {
-        get_by_attr(box, "data-value").textContent = to_list(hw)[j] + " " + units;
+        get_by_attr(box, "data-value").textContent = to_list(hw)[j][0] +": " + to_list(hw)[j][1] + " " + units;
       });
     });
   }
