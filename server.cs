@@ -42,7 +42,9 @@ public class Service : WebSocketBehavior {
     } else if (message.tag == "get_smart_data") {
       send_message("smart_data", server.smart_data);
     } else {
-      server.fifo.Enqueue(message);
+      if (server.fifo.Count < 1024) {
+        server.fifo.Enqueue(message);
+      }
     }
   }
 
