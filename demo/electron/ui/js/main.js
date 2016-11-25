@@ -50,45 +50,46 @@ function make_effect_box(effect_list) {
 }
 
 function main() {
-  function make_list(hw, to_list, title, name, units) {
-    to_list(hw).forEach(function (v, i) {
-      var box = make_simple_box(title + i, name);
+  function make_list(hw, to_dict, title, name, units) {
+    var dict = to_dict(hw);
+    for (var key in dict) {
+      (function (box, key) {
+        updaters.push(function (hw) {
+          get_by_attr(box, "data-value").textContent = to_dict(hw)[key] + " " + units;
+        });
+      })(make_simple_box(key, name), key);
+    }
+  }
+
+  function add_mbs(hw) {
+    hw.mbs.forEach(function (v, i) {
       var j = i;
-      updaters.push(function (hw) {
-        get_by_attr(box, "data-value").textContent = to_list(hw)[j][0] +": " + to_list(hw)[j][1] + " " + units;
-      });
+      make_list(hw, function (hw) { return hw.mbs[j].fan; }, "MB" + i + " Fan", v.name, "RPM");
+      make_list(hw, function (hw) { return hw.mbs[j].temp; }, "MB" + i + " Temp", v.name, "C");
     });
   }
 
-  function add_mb_list(hw) {
-    hw.mb_list.forEach(function (v, i) {
+  function add_cpus(hw) {
+    hw.cpus.forEach(function (v, i) {
       var j = i;
-      make_list(hw, function (hw) { return hw.mb_list[j].fan_list; }, "MB" + i + " Fan", v.name, "RPM");
-      make_list(hw, function (hw) { return hw.mb_list[j].temp_list; }, "MB" + i + " Temp", v.name, "C");
+      make_list(hw, function (hw) { return hw.cpus[j].load; }, "CPU" + i + " Load", v.name, "%");
+      make_list(hw, function (hw) { return hw.cpus[j].temp; }, "CPU" + i + " Temp", v.name, "C");
     });
   }
 
-  function add_cpu_list(hw) {
-    hw.cpu_list.forEach(function (v, i) {
+  function add_hdds(hw) {
+    hw.hdds.forEach(function (v, i) {
       var j = i;
-      make_list(hw, function (hw) { return hw.cpu_list[j].load_list; }, "CPU" + i + " Load", v.name, "%");
-      make_list(hw, function (hw) { return hw.cpu_list[j].temp_list; }, "CPU" + i + " Temp", v.name, "C");
+      make_list(hw, function (hw) { return hw.hdds[j].temp; }, "HDD" + i + " Temp", v.name, "C");
     });
   }
 
-  function add_hdd_list(hw) {
-    hw.hdd_list.forEach(function (v, i) {
+  function add_gpus(hw) {
+    hw.gpus.forEach(function (v, i) {
       var j = i;
-      make_list(hw, function (hw) { return hw.hdd_list[j].temp_list; }, "HDD" + i + " Temp", v.name, "C");
-    });
-  }
-
-  function add_gpu_list(hw) {
-    hw.gpu_list.forEach(function (v, i) {
-      var j = i;
-      make_list(hw, function (hw) { return hw.gpu_list[j].fan_list; }, "GPU" + i + " Fan", v.name, "RPM");
-      make_list(hw, function (hw) { return hw.gpu_list[j].load_list; }, "GPU" + i + " Load", v.name, "%");
-      make_list(hw, function (hw) { return hw.gpu_list[j].temp_list; }, "GPU" + i + " Temp", v.name, "C");
+      make_list(hw, function (hw) { return hw.gpus[j].fan; }, "GPU" + i + " Fan", v.name, "RPM");
+      make_list(hw, function (hw) { return hw.gpus[j].load; }, "GPU" + i + " Load", v.name, "%");
+      make_list(hw, function (hw) { return hw.gpus[j].temp; }, "GPU" + i + " Temp", v.name, "C");
     });
   }
 
@@ -97,11 +98,10 @@ function main() {
     var data;
     smart_list.forEach(function (v, i) {
       box = make_smart_box("HDD" + i + " S.M.A.R.T.", v.name);
-      data = "";
-      v.attr_list.forEach(function (v) {
-        data += v.toString() + "\n"
-      });
-      get_by_attr(box, "data-value").textContent = data;
+      get_by_attr(box, "data-value").textContent = "";
+      for (var key in v.attributes) {
+        get_by_attr(box, "data-value").textContent += v.attributes[key].name + ": " + v.attributes[key].value + "\n";
+      }
     });
   }
 
@@ -119,10 +119,10 @@ function main() {
     updaters = [];
     $("#grid").innerHTML = "";
     add_effects();
-    add_mb_list(hw);
-    add_cpu_list(hw);
-    add_hdd_list(hw);
-    add_gpu_list(hw);
+    add_mbs(hw);
+    add_cpus(hw);
+    add_hdds(hw);
+    add_gpus(hw);
     update_widgets(hw);
   }
 

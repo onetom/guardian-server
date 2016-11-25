@@ -3,38 +3,46 @@ using System.Collections.Generic;
 
 public class MB_report {
   public string name;
-  public List<dynamic> fan_list;
-  public List<dynamic> temp_list;
+  public Dictionary<string, double> fan;
+  public Dictionary<string, double> temp;
 }
 
 public class CPU_report {
   public string name;
-  public List<dynamic> load_list;
-  public List<dynamic> temp_list;
+  public Dictionary<string, double> load;
+  public Dictionary<string, double> temp;
 }
 
 public class HDD_report {
   public string name;
-  public List<dynamic> temp_list;
+  public Dictionary<string, double> temp;
 }
 
 public class GPU_report {
   public string name;
-  public List<dynamic> fan_list;
-  public List<dynamic> load_list;
-  public List<dynamic> temp_list;
+  public Dictionary<string, double> fan;
+  public Dictionary<string, double> load;
+  public Dictionary<string, double> temp;
 }
 
 public class Monitor_report {
-  public List<MB_report> mb_list;
-  public List<CPU_report> cpu_list;
-  public List<HDD_report> hdd_list;
-  public List<GPU_report> gpu_list;
+  public List<MB_report> mbs;
+  public List<CPU_report> cpus;
+  public List<HDD_report> hdds;
+  public List<GPU_report> gpus;
+}
+
+public class Attribute {
+  public string name;
+  public int id;
+  public int flags;
+  public int value;
+  public int worst;
 }
 
 public class SMART_report {
   public string name;
-  public List<List<dynamic>> attr_list;
+  public List<Attribute> attributes;
 }
 
 class CPUID {
@@ -138,7 +146,7 @@ class CPUID {
       ref extended_error_code);
   }
 
-  public List<dynamic> get_sensor_list(int device_index, int sensor_class) {
+  public Dictionary<string, double> get_sensor_list(int device_index, int sensor_class) {
     int sensor_index;
     int NbSensors;
     bool result;
@@ -148,7 +156,7 @@ class CPUID {
     float fValue = 0;
     float fMinValue = 0;
     float fMaxValue = 0;
-    var sensors = new List<dynamic>();
+    var sensors = new Dictionary<string, double>();
     NbSensors = pSDK.GetNumberOfSensors(device_index, sensor_class);
     for (sensor_index = 0; sensor_index < NbSensors; sensor_index += 1) {
       result = pSDK.GetSensorInfos(device_index,
@@ -161,7 +169,7 @@ class CPUID {
         ref fMinValue,
         ref fMaxValue);
       if (result == true) {
-        sensors.Add(new List<dynamic> { sensorname, Math.Round(fValue, 2) });
+        sensors.Add(sensorname, Math.Round(fValue, 2));
       }
     }
     return sensors;
@@ -173,10 +181,10 @@ class CPUID {
     string devicename;
     int deviceclass;
     var report = new Monitor_report();
-    report.mb_list = new List<MB_report>();
-    report.cpu_list = new List<CPU_report>();
-    report.hdd_list = new List<HDD_report>();
-    report.gpu_list = new List<GPU_report>();
+    report.mbs = new List<MB_report>();
+    report.cpus = new List<CPU_report>();
+    report.hdds = new List<HDD_report>();
+    report.gpus = new List<GPU_report>();
     pSDK.RefreshInformation();
     NbDevices = pSDK.GetNumberOfDevices();
     for (device_index = 0; device_index < NbDevices; device_index += 1) {
@@ -185,27 +193,27 @@ class CPUID {
       if (deviceclass == CPUIDSDK.CLASS_DEVICE_MAINBOARD) {
         var mb = new MB_report();
         mb.name = devicename;
-        mb.fan_list = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
-        mb.temp_list = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
-        report.mb_list.Add(mb);
+        mb.fan = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
+        mb.temp = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
+        report.mbs.Add(mb);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_PROCESSOR) {
         var cpu = new CPU_report();
         cpu.name = devicename;
-        cpu.load_list = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
-        cpu.temp_list = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
-        report.cpu_list.Add(cpu);
+        cpu.load = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
+        cpu.temp = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
+        report.cpus.Add(cpu);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_DRIVE) {
         var hdd = new HDD_report();
         hdd.name = devicename;
-        hdd.temp_list = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
-        report.hdd_list.Add(hdd);
+        hdd.temp = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
+        report.hdds.Add(hdd);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_DISPLAY_ADAPTER) {
         var gpu = new GPU_report();
         gpu.name = devicename;
-        gpu.fan_list = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
-        gpu.load_list = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
-        gpu.temp_list = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
-        report.gpu_list.Add(gpu);
+        gpu.fan = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
+        gpu.load = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
+        gpu.temp = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
+        report.gpus.Add(gpu);
       }
     }
     return report;
@@ -221,11 +229,17 @@ class CPUID {
     for (int hdd_index = 0; hdd_index < pSDK.GetNumberOfHDD(); hdd_index += 1) {
       var smart = new SMART_report();
       smart.name = pSDK.GetHDDName(hdd_index);
-      smart.attr_list = new List<List<dynamic>>();
+      smart.attributes = new List<Attribute>();
       for (int attrib_index = 0; attrib_index < pSDK.GetHDDNumberOfAttributes(hdd_index); attrib_index += 1) {
         bool res = pSDK.GetHDDAttribute(hdd_index, attrib_index, ref id, ref flags, ref value, ref worst, data);
         if (res && smart_names.ContainsKey(attrib_index)) {
-          smart.attr_list.Add(new List<dynamic> { smart_names[attrib_index], id, flags, value, worst });
+          var attribute = new Attribute();
+          attribute.name = smart_names[attrib_index];
+          attribute.id = id;
+          attribute.flags = flags;
+          attribute.value = value;
+          attribute.worst = worst;
+          smart.attributes.Add(attribute);
         }
       }
       smart_list.Add(smart);
