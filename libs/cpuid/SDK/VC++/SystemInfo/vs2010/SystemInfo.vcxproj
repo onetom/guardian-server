@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|x64">
+      <Configuration>Template</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{690BB83D-C67F-43B0-B670-565D1DABF42E}</ProjectGuid>
+    <RootNamespace>SystemInfo</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">true</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Template|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <UACExecutionLevel>HighestAvailable</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX64</TargetMachine>
+      <UACExecutionLevel>HighestAvailable</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <UACExecutionLevel>HighestAvailable</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX64</TargetMachine>
+      <UACExecutionLevel>HighestAvailable</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <Link>
+      <UACExecutionLevel>HighestAvailable</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'">
+    <Link>
+      <UACExecutionLevel>HighestAvailable</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Common\cpuidsdk.cpp" />
+    <ClCompile Include="..\CPUInfoDlg.cpp" />
+    <ClCompile Include="..\DisplayDlg.cpp" />
+    <ClCompile Include="..\MemoryDlg.cpp" />
+    <ClCompile Include="..\MonitoringDlg.cpp" />
+    <ClCompile Include="..\MyTabCtl.cpp" />
+    <ClCompile Include="..\SPDDlg.cpp" />
+    <ClCompile Include="..\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\SystemInfo.cpp" />
+    <ClCompile Include="..\SystemInfoDlg.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Common\cpuidsdk.h" />
+    <ClInclude Include="..\CPUInfoDlg.h" />
+    <ClInclude Include="..\DisplayDlg.h" />
+    <ClInclude Include="..\MemoryDlg.h" />
+    <ClInclude Include="..\MonitoringDlg.h" />
+    <ClInclude Include="..\MyTabCtl.h" />
+    <ClInclude Include="..\Resource.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="..\SPDDlg.h" />
+    <ClInclude Include="..\stdafx.h" />
+    <ClInclude Include="..\SystemInfo.h" />
+    <ClInclude Include="..\SystemInfoDlg.h" />
+    <ClInclude Include="..\SystemInfoInc.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\res\amd.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon.bmp" />
+    <None Include="..\res\amd_athlon.bmp" />
+    <None Include="..\res\amd_athlon2.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon2.bmp" />
+    <None Include="..\res\amd_athlon2_x2.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon2_x2.bmp" />
+    <None Include="..\res\amd_athlon64.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon64.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon64_fx.bmp" />
+    <None Include="..\res\amd_athlon64_fx.bmp" />
+    <None Include="..\res\amd_athlon64_m.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon64_m.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon64_x2.bmp" />
+    <None Include="..\res\amd_athlon64_x2.bmp" />
+    <None Include="..\res\amd_athlon_k10.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon_mp.bmp" />
+    <None Include="..\res\amd_athlon_mp.bmp" />
+    <None Include="..\res\amd_athlon_neo.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon_xp.bmp" />
+    <None Include="..\res\amd_athlon_xp.bmp" />
+    <None Include="..\res\amd_duron.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_duron.bmp" />
+    <None Include="..\res\amd_fx.bmp" />
+    <None Include="..\res\amd_k15_a10r.bmp" />
+    <None Include="..\res\amd_k15_a10t.bmp" />
+    <None Include="..\res\amd_k15_a8r.bmp" />
+    <None Include="..\res\amd_k15_athlon_x4.bmp" />
+    <None Include="..\res\amd_k15_fxb.bmp" />
+    <None Include="..\res\amd_k15_fxv.bmp" />
+    <None Include="..\res\amd_k15_opteron.bmp" />
+    <None Include="..\res\amd_k16_a4k.bmp" />
+    <None Include="..\res\amd_k16_a6k.bmp" />
+    <None Include="..\res\amd_k16_athlon.bmp" />
+    <None Include="..\res\amd_k16_opteron.bmp" />
+    <None Include="..\res\amd_k16_sempron.bmp" />
+    <None Include="..\res\amd_k6.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_k6_2.bmp" />
+    <None Include="..\res\amd_k6_2.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_K6_3.bmp" />
+    <None Include="..\res\amd_K6_3.bmp" />
+    <None Include="..\res\amd_opteron.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_opteron.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_opteron_k10.bmp" />
+    <None Include="..\res\amd_opteron_k10.bmp" />
+    <None Include="..\res\amd_phenom.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_phenom.bmp" />
+    <None Include="..\res\amd_phenom2.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_phenom2.bmp" />
+    <None Include="..\res\amd_phenom2_x2.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_phenom2_x2.bmp" />
+    <None Include="..\res\amd_phenom2_x4.bmp" />
+    <None Include="..\res\amd_phenom2_x6.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_phenom_fx.bmp" />
+    <None Include="..\res\amd_phenom_fx.bmp" />
+    <None Include="..\res\amd_phenom_x3.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_phenom_x3.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_sempron_k10.bmp" />
+    <None Include="..\res\amd_sempron_k10.bmp" />
+    <None Include="..\res\amd_sempron_m.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_sempron_m.bmp" />
+    <None Include="..\res\amd_turion64.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_turion64.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_turion64_k10.bmp" />
+    <None Include="..\res\amd_turion64_k10.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_turion64_ultra.bmp" />
+    <None Include="..\res\amd_turion64_ultra.bmp" />
+    <None Include="..\res\amd_turion_64_x2.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_turion_64_x2.bmp" />
+    <None Include="..\res\amd_vision.bmp" />
+    <None Include="..\res\bitmap7.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\cyrix.bmp" />
+    <None Include="..\res\cyrix.bmp" />
+    <None Include="..\res\empty.bmp" />
+    <None Include="..\res\intel.bmp" />
+    <None Include="..\res\intel_atom.bmp" />
+    <None Include="..\res\intel_atom_v2.bmp" />
+    <None Include="..\res\intel_atom_v4.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_celeron.bmp" />
+    <None Include="..\res\intel_celeron.bmp" />
+    <None Include="..\res\intel_celeron_d.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_celeron_d.bmp" />
+    <None Include="..\res\intel_celeron_m.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_celeron_m.bmp" />
+    <None Include="..\res\intel_celeron_v4.bmp" />
+    <None Include="..\res\intel_core2_duo.bmp" />
+    <None Include="..\res\intel_core2_ee.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_core2_quad.bmp" />
+    <None Include="..\res\intel_core2_quad.bmp" />
+    <None Include="..\res\intel_core2_solo.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_core2_solo.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_core_duo.bmp" />
+    <None Include="..\res\intel_core_duo.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_core_solo.bmp" />
+    <None Include="..\res\intel_core_solo.bmp" />
+    <None Include="..\res\intel_corei3.bmp" />
+    <None Include="..\res\intel_corei3_v2.bmp" />
+    <None Include="..\res\intel_corei3_v4.bmp" />
+    <None Include="..\res\intel_corei5.bmp" />
+    <None Include="..\res\intel_corei5_v2.bmp" />
+    <None Include="..\res\intel_corei5_v4.bmp" />
+    <None Include="..\res\intel_corei7.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_corei7_ee.bmp" />
+    <None Include="..\res\intel_corei7_ee.bmp" />
+    <None Include="..\res\intel_corei7_v2.bmp" />
+    <None Include="..\res\intel_corei7_v4.bmp" />
+    <None Include="..\res\intel_corei7xe_v2.bmp" />
+    <None Include="..\res\intel_itanium.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_itanium.bmp" />
+    <None Include="..\res\intel_p1.bmp" />
+    <None Include="..\res\intel_p1mmx.bmp" />
+    <None Include="..\res\intel_p2.bmp" />
+    <None Include="..\res\intel_p3.bmp" />
+    <None Include="..\res\intel_p3_m.bmp" />
+    <None Include="..\res\intel_p4.bmp" />
+    <None Include="..\res\intel_p4_ee.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_p4_ee.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_p4_ht.bmp" />
+    <None Include="..\res\intel_p4_ht.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_pentium.bmp" />
+    <None Include="..\res\intel_pentium.bmp" />
+    <None Include="..\res\intel_pentium_d.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_pentium_d.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_pentium_m.bmp" />
+    <None Include="..\res\intel_pentium_m.bmp" />
+    <None Include="..\res\intel_pentium_v4.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_pentium_xe.bmp" />
+    <None Include="..\res\intel_pentium_xe.bmp" />
+    <None Include="..\res\intel_ppro.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_xeon.bmp" />
+    <None Include="..\res\intel_xeon.bmp" />
+    <None Include="..\res\intel_xeon_v2.bmp" />
+    <None Include="..\res\intel_xeon_v4.bmp" />
+    <None Include="..\res\SystemInfo.ico" />
+    <None Include="res\SystemInfo.rc2" />
+    <None Include="..\res\transmeta_efficeon.bmp" />
+    <None Include="..\res\via.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\via.bmp" />
+    <None Include="..\res\via_c3.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\via_c3.bmp" />
+    <None Include="..\res\via_c7.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\via_c7.bmp" />
+    <None Include="..\res\via_c7_d.bmp" />
+    <None Include="..\res\via_c7_m.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\via_c7_m.bmp" />
+    <None Include="..\res\via_eden.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\via_eden.bmp" />
+    <None Include="..\res\via_eden_x2.bmp" />
+    <None Include="..\res\via_nano.bmp" />
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\via_nano.bmp" />
+    <None Include="..\res\via_nano_x2.bmp" />
+    <None Include="..\res\via_quadcore.bmp" />
+    <None Include="..\res\via_winchip.bmp" />
+    <None Include="..\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SystemInfo.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="SystemInfo.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

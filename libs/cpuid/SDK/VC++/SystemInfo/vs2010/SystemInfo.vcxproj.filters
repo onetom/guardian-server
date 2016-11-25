@@ -1,0 +1,557 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Common\cpuidsdk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPUInfoDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DisplayDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MemoryDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MonitoringDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MyTabCtl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SPDDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SystemInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SystemInfoDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Common\cpuidsdk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPUInfoDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DisplayDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MemoryDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MonitoringDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MyTabCtl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SPDDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SystemInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SystemInfoDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SystemInfoInc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\res\amd.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_athlon.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_athlon2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_athlon2_x2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon2_x2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_athlon64.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon64.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon64_fx.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_athlon64_fx.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_athlon64_m.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon64_m.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon64_x2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_athlon64_x2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_athlon_k10.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon_mp.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_athlon_mp.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_athlon_neo.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_athlon_xp.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_athlon_xp.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_duron.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_duron.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_fx.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k15_a10r.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k15_a10t.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k15_a8r.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k15_athlon_x4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k15_fxb.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k15_fxv.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k15_opteron.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k16_a4k.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k16_a6k.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k16_athlon.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k16_opteron.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k16_sempron.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k6.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_k6_2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_k6_2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_K6_3.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_K6_3.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_opteron.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_opteron.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_opteron_k10.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_opteron_k10.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_phenom.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_phenom.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_phenom2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_phenom2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_phenom2_x2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_phenom2_x2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_phenom2_x4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_phenom2_x6.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_phenom_fx.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_phenom_fx.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_phenom_x3.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_phenom_x3.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_sempron_k10.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_sempron_k10.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_sempron_m.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_sempron_m.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_turion64.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_turion64.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_turion64_k10.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_turion64_k10.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_turion64_ultra.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_turion64_ultra.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_turion_64_x2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\amd_turion_64_x2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\amd_vision.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\bitmap7.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\cyrix.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\cyrix.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\empty.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_atom.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_atom_v2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_atom_v4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_celeron.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_celeron.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_celeron_d.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_celeron_d.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_celeron_m.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_celeron_m.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_celeron_v4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_core2_duo.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_core2_ee.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_core2_quad.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_core2_quad.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_core2_solo.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_core2_solo.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_core_duo.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_core_duo.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_core_solo.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_core_solo.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_corei3.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_corei3_v2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_corei3_v4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_corei5.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_corei5_v2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_corei5_v4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_corei7.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_corei7_ee.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_corei7_ee.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_corei7_v2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_corei7_v4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_corei7xe_v2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_itanium.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_itanium.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_p1.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_p1mmx.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_p2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_p3.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_p3_m.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_p4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_p4_ee.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_p4_ee.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_p4_ht.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_p4_ht.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_pentium.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_pentium.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_pentium_d.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_pentium_d.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_pentium_m.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_pentium_m.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_pentium_v4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_pentium_xe.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_pentium_xe.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_ppro.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\intel_xeon.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_xeon.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_xeon_v2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\intel_xeon_v4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\SystemInfo.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\SystemInfo.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\transmeta_efficeon.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\via.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\via.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\via_c3.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\via_c3.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\via_c7.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\via_c7.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\via_c7_d.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\via_c7_m.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\via_c7_m.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\via_eden.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\via_eden.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\via_eden_x2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\via_nano.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\SDK_2\VC++\SystemInfo\res\via_nano.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\via_nano_x2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\via_quadcore.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\via_winchip.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SystemInfo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

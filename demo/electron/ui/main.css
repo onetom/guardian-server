@@ -1,0 +1,40 @@
+body {
+  background: #000000;
+}
+
+.box {
+  overflow: auto;
+  float: left;
+  width: 300px;
+  height: 300px;
+  background: #f0f0f0;
+  border: 20px solid black;
+}
+
+.header {
+  text-align: center;
+  font-size: 1.5em;
+  height: 30px;
+  background: #b0b0b0;
+}
+
+.footer {
+  text-align: center;
+  font-size: 0.8em;
+}
+
+.body {
+  text-align: center;
+  font-size: 2.5em;
+  line-height: 250px;
+}
+
+select {
+  width: 300px;
+  font-size: 0.8em;
+}
+
+pre {
+  font-size: 0.3em;
+  line-height: 1.2em;
+}

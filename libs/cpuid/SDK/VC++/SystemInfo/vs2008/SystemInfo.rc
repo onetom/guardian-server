@@ -1,0 +1,608 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SYSTEMINFO_DIALOG DIALOGEX 0, 0, 271, 233
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "CPUID System Info"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_MAIN_TAB,"SysTabControl32",TCS_MULTILINE,2,2,267,211
+    PUSHBUTTON      "Quit",IDC_BUTTON_OK,201,216,67,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,1,4
+ PRODUCTVERSION 1,0,1,4
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "CPUID"
+            VALUE "FileDescription", "System Info Application"
+            VALUE "FileVersion", "1, 0, 1, 4"
+            VALUE "InternalName", "SystemInfo.exe"
+            VALUE "LegalCopyright", "(c)2007 CPUID.  All rights reserved."
+            VALUE "OriginalFilename", "SystemInfo.exe"
+            VALUE "ProductName", "SystemInfo"
+            VALUE "ProductVersion", "1, 0, 1, 4"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SYSTEMINFO_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 269
+        BOTTOMMARGIN, 231
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// French (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CPUINFO_DIALOG DIALOGEX 0, 0, 265, 197
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    RTEXT           "Name",IDC_STATIC_CPU_NAME,9,11,39,9
+    RTEXT           "Family",IDC_STATIC_CPU_FAMILY,10,70,38,9
+    RTEXT           "Model",IDC_STATIC_CPU_MODEL,96,70,36,9
+    RTEXT           "Stepping",IDC_STATIC_CPU_STEPPING,178,70,35,9
+    RTEXT           "TDP",IDC_STATIC_TDP,134,21,17,9
+    CTEXT           "",IDC_CPU1_NAME,52,10,140,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_VENDOR,52,21,74,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_FAMILY,52,69,35,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_MODEL,137,69,35,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_STEPPING,220,69,35,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_TDP,154,21,38,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_PROCESS,52,43,38,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_CLOCK,52,123,63,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Core Speed",IDC_STATIC_CPU_SPEED,4,124,43,9
+    CTEXT           "",IDC_CPU1_CLOCK_MULTIPLIER,52,134,63,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Multiplier",IDC_STATIC_CLOCK_MUL,4,135,43,9
+    CTEXT           "",IDC_CPU1_FSB_FREQUENCY,52,145,63,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Bus Speed",IDC_STATIC_FSB_FREQ,4,146,43,9
+    CTEXT           "",IDC_CPU1_CORE_STEPPING,220,80,35,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Technology",IDC_STATIC_PROCESS,8,44,40,9
+    CTEXT           "",IDC_CPU1_L1_D_SIZE,157,123,63,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_L1_D_ASSO,221,123,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_L2_SIZE,157,145,63,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "L1 Inst.",IDC_STATIC_CPU_L1_I_SIZE,125,135,27,9
+    RTEXT           "L1 Data",IDC_STATIC_CPU_L1_D_SIZE,125,124,27,9
+    RTEXT           "Level 2",IDC_STATIC_L2_SIZE,125,146,27,9
+    CTEXT           "",IDC_CPU1_PACKAGE,52,32,140,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Package",IDC_STATIC_PACKAGE,7,33,41,9
+    CTEXT           "",IDC_CPU1_NAMESTRING,52,58,203,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Specification",IDC_STATIC_CPU_NAMESTRING,5,59,43,9
+    GROUPBOX        "Processor",IDC_STATIC_GROUP_PROCESSOR,4,1,257,111
+    CTEXT           "",IDC_CPU1_CORE_VOLTAGE,144,43,48,10,SS_CENTERIMAGE | SS_SUNKEN
+    CONTROL         "",IDC_CPU_LOGO,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,194,9,31,22
+    RTEXT           "Ext. Family",IDC_STATIC_CPU_EFAMILY,8,81,40,9
+    RTEXT           "Ext. Model",IDC_STATIC_CPU_EMODEL,95,81,37,9
+    RTEXT           "Revision",IDC_STATIC_CORE_STEPPING,180,81,33,9
+    CTEXT           "",IDC_CPU1_EXTFAMILY,52,80,35,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_EXTMODEL,137,80,35,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "",IDC_CPU1_ISET,52,91,203,18,SS_SUNKEN
+    RTEXT           "Instructions",IDC_STATIC_CPU_INSTRUCTIONS,8,92,40,9
+    RTEXT           "Code Name",IDC_STATIC_CPU_CODENAME,5,22,43,9
+    GROUPBOX        "Clocks",IDC_STATIC_GROUP_CLOCKS,3,113,117,59
+    CTEXT           "",IDC_CPU1_BUS_FREQUENCY,52,156,63,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Rated FSB",IDC_STATIC_BUS_SPEED,4,156,43,9
+    GROUPBOX        "Cache",IDC_STATIC_GROUP_CACHE,123,113,138,59
+    COMBOBOX        IDC_COMBO_CPUSEL,52,178,73,80,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Selection",IDC_STATIC_CPU_SELECTION,8,180,38,9
+    CTEXT           "",IDC_CPU1_L3_SIZE,157,156,63,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Level 3",IDC_STATIC_L3_SIZE,125,156,27,9
+    RTEXT           "Core Voltage",IDC_STATIC_CORE_VOLTAGE,98,44,42,9
+    CTEXT           "",IDC_CPU1_NBTHREADS,232,180,21,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_NBCORES,170,180,21,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Threads",IDC_STATIC_CPU_NBTHREADS,197,180,31,9
+    CTEXT           "",IDC_CPU1_L1_I_SIZE,157,134,63,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_L1_I_ASSO,221,134,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_L2_ASSO,221,145,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_CPU1_L3_ASSO,221,156,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Cores",IDC_STATIC_CPU_NBCORES,140,180,26,9
+    GROUPBOX        "",IDC_STATIC,4,171,257,22
+END
+
+IDD_MONITORING_DIALOG DIALOGEX 0, 0, 265, 197
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "",IDC_VOLTAGE_1,63,12,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Voltage 1",IDC_STATIC_VOLTAGE_1,13,13,44,9
+    GROUPBOX        "Voltages",IDC_STATIC,4,1,232,71
+    CTEXT           "",IDC_VOLTAGE_2,63,23,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Voltage 2",IDC_STATIC_VOLTAGE_2,13,24,44,9
+    CTEXT           "",IDC_VOLTAGE_3,63,34,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Voltage 3",IDC_STATIC_VOLTAGE_3,13,35,44,9
+    CTEXT           "",IDC_VOLTAGE_4,63,45,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Voltage 4",IDC_STATIC_VOLTAGE_4,13,46,44,9
+    CTEXT           "",IDC_VOLTAGE_5,63,56,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Voltage 5",IDC_STATIC_VOLTAGE_5,13,57,44,9
+    CTEXT           "",IDC_VOLTAGE_6,174,12,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Voltage 6",IDC_STATIC_VOLTAGE_6,122,13,44,9
+    CTEXT           "",IDC_VOLTAGE_7,174,23,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Voltage 7",IDC_STATIC_VOLTAGE_7,122,24,44,9
+    CTEXT           "",IDC_VOLTAGE_8,174,34,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Voltage 8",IDC_STATIC_VOLTAGE_8,122,35,44,9
+    CTEXT           "",IDC_VOLTAGE_9,174,45,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Voltage 9",IDC_STATIC_VOLTAGE_9,122,46,44,9
+    CTEXT           "",IDC_TEMPERATURE_1,63,83,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Temp 1",IDC_STATIC_TEMPERATURE_1,13,84,44,9
+    GROUPBOX        "Temperatures",IDC_STATIC,4,74,232,81
+    CTEXT           "",IDC_TEMPERATURE_2,63,94,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Temp 2",IDC_STATIC_TEMPERATURE_2,13,95,44,9
+    CTEXT           "",IDC_TEMPERATURE_3,63,105,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Temp 3",IDC_STATIC_TEMPERATURE_3,13,106,44,9
+    CTEXT           "",IDC_TEMPERATURE_4,63,116,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Temp 4",IDC_STATIC_TEMPERATURE_4,13,117,44,9
+    CTEXT           "",IDC_TEMPERATURE_5,63,127,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Temp 5",IDC_STATIC_TEMPERATURE_5,13,128,44,9
+    CTEXT           "",IDC_TEMPERATURE_C1,173,83,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "CPU core#1",IDC_STATIC_TEMPERATURE_C1,122,84,44,9
+    CTEXT           "",IDC_TEMPERATURE_C2,173,94,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "CPU core#2",IDC_STATIC_TEMPERATURE_C2,122,95,44,9
+    CTEXT           "",IDC_TEMPERATURE_C3,173,105,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "CPU core#3",IDC_STATIC_TEMPERATURE_C3,122,106,44,9
+    CTEXT           "",IDC_TEMPERATURE_C4,173,116,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "CPU core#4",IDC_STATIC_TEMPERATURE_C4,122,117,44,9
+    GROUPBOX        "Fans",IDC_STATIC,4,156,232,35
+    CTEXT           "",IDC_FAN_1,62,165,55,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Fan 1",IDC_STATIC_FAN_1,12,166,44,9
+    CTEXT           "",IDC_FAN_2,62,176,55,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Fan 2",IDC_STATIC_FAN_2,12,178,44,9
+    CTEXT           "",IDC_FAN_3,174,165,55,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Fan 3",IDC_STATIC_FAN_3,122,166,44,9
+    CTEXT           "",IDC_FAN_4,174,176,55,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Fan 4",IDC_STATIC_FAN_4,122,178,44,9
+    CTEXT           "",IDC_VOLTAGE_10,173,56,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Voltage 10",IDC_STATIC_VOLTAGE_10,121,57,44,9
+    CTEXT           "",IDC_TEMPERATURE_C5,173,127,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "CPU core#5",IDC_STATIC_TEMPERATURE_C5,122,128,44,9
+    CTEXT           "",IDC_TEMPERATURE_C6,173,138,39,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "CPU core#6",IDC_STATIC_TEMPERATURE_C6,122,139,44,9
+END
+
+IDD_SPD_DIALOG DIALOGEX 0, 0, 265, 197
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "",IDC_RAM_TYPE,74,15,179,10,SS_CENTERIMAGE | SS_SUNKEN
+    GROUPBOX        "Memory Slot Selection",IDC_STATIC_MEMORY_GENERAL,4,1,257,83
+    COMBOBOX        IDC_COMBO_SPD,11,13,58,59,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "",IDC_SPD_MANUFACTURER,74,48,83,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Manufacturer",IDC_STATIC_SPD_MANUFACTURER,20,49,48,9
+    CTEXT           "",IDC_SPD_FREQUENCY0,74,102,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Frequency",IDC_STATIC_SPD_FREQUENCY,20,102,48,9
+    CTEXT           "",IDC_SPD_CAS0,74,113,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_RASTOCAS0,74,124,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_RASPRECHARGE0,74,135,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_FREQUENCY1,117,102,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_CAS1,117,113,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_RASTOCAS1,117,124,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_RASPRECHARGE1,117,135,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_TRAS1,117,146,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_FREQUENCY2,160,102,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_CAS2,160,113,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_RASTOCAS2,160,124,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_RASPRECHARGE2,160,135,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_TRAS2,160,146,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "CAS# Latency",IDC_STATIC_SPD_CAS,12,113,56,9
+    RTEXT           "RAS# to CAS#",IDC_STATIC_SPD_RASTOCAS,12,124,56,9
+    RTEXT           "RAS# Precharge",IDC_STATIC_SPD_RASPRECHARGE,12,135,56,9
+    RTEXT           "tRAS",IDC_STATIC_SPD_TRAS,23,146,45,9
+    GROUPBOX        "Timings Table",IDC_STATIC_TIMINGSTABLE,4,85,257,109
+    CTEXT           "",IDC_SPD_BANDWIDTH,74,37,83,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Max Bandwidth",IDC_STATIC_SPD_BANDWIDTH,8,38,60,9
+    CTEXT           "",IDC_SPD_PARTNUMBER,74,59,83,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Part Number",IDC_STATIC_SPD_PARTNUMBER,19,60,49,9
+    CTEXT           "",IDC_SPD_SERIALNUMBER,74,70,83,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Serial Number",IDC_STATIC_SPD_SERIALNUMBER,12,71,56,9
+    CTEXT           "",IDC_SPD_SIZE,74,26,83,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Module Size",IDC_STATIC_SPD_SIZE,16,27,52,9
+    CTEXT           "",IDC_SPD_CORRECTION,202,26,51,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Correction",IDC_STATIC_SPD_CORRECTION,162,27,36,9
+    RTEXT           "Buffered",IDC_STATIC_SPD_BUFFERED,165,48,33,9
+    CTEXT           "",IDC_SPD_BUFFERED,202,48,51,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_DATE,202,70,51,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Week/Year",IDC_STATIC_SPD_DATE,160,71,38,9
+    CTEXT           "",IDC_SPD_REGISTERED,202,37,51,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Registered",IDC_STATIC_SPD_REGISTERED,159,37,39,9
+    CTEXT           "",IDC_SPD_EXT,202,59,51,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "SPD Ext.",IDC_STATIC_SPD_EXT,165,60,33,9
+    CTEXT           "",IDC_SPD_FREQUENCY3,203,102,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_CAS3,203,113,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_RASTOCAS3,203,124,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_RASPRECHARGE3,203,135,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_TRAS3,203,146,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_TRAS0,74,146,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_TRC1,117,157,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_TRC2,160,157,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "tRC",IDC_STATIC_SPD_TRC,23,157,45,9
+    CTEXT           "",IDC_SPD_TRC3,203,157,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_TRC0,74,157,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_CR1,117,168,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_CR2,160,168,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Command Rate",IDC_STATIC_SPD_CR,9,168,59,9
+    CTEXT           "",IDC_SPD_CR3,203,168,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_CR0,74,168,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_VDD1,117,179,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_VDD2,160,179,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Voltage",IDC_STATIC_SPD_VDD,30,179,38,9
+    CTEXT           "",IDC_SPD_VDD3,203,179,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SPD_VDD0,74,179,42,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "Profile #1",IDC_SPD_PROFILE_NAME0,74,91,42,9,SS_CENTERIMAGE
+    CTEXT           "Profile #2",IDC_SPD_PROFILE_NAME1,117,91,42,9,SS_CENTERIMAGE
+    CTEXT           "Profile #3",IDC_SPD_PROFILE_NAME2,160,91,42,9,SS_CENTERIMAGE
+    CTEXT           "Profile #4",IDC_SPD_PROFILE_NAME3,203,91,42,9,SS_CENTERIMAGE
+END
+
+IDD_MEMORY_DIALOG DIALOGEX 0, 0, 265, 197
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "",IDC_RAM_SIZE,45,25,67,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Size",IDC_STATIC_RAM_SIZE,15,26,22,9
+    CTEXT           "",IDC_RAM_CAS_LATENCY,119,68,57,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_RAM_RAS_TO_CAS,119,79,57,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "CAS# Latency (CL)",IDC_STATIC_RAM_CAS_L,17,69,92,9
+    CTEXT           "",IDC_RAM_RAS_PRECHARGE,119,90,57,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "RAS# to CAS# Delay (tRCD)",IDC_STATIC_RAM_RTOC,17,80,92,9
+    RTEXT           "RAS# Precharge (tRP)",IDC_STATIC_RAM_RPRE,17,91,92,9
+    CTEXT           "",IDC_RAM_TRAS,119,101,57,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_RAM_TRC,119,112,57,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Bank Cycle Time (tRC)",IDC_STATIC_RAM_TRC,17,113,92,9
+    RTEXT           "Cycle Time (tRAS)",IDC_STATIC_RAM_TRAS,17,102,92,9
+    GROUPBOX        "Timings",IDC_STATIC_MEMORY_TIMINGS,2,46,180,96
+    CTEXT           "",IDC_RAM_FREQUENCY,119,57,57,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "DRAM Frequency",IDC_STATIC_RAM_FREQUENCY,35,58,73,9
+    GROUPBOX        "General",IDC_STATIC_GROUP_GENERAL,2,3,259,41
+    CTEXT           "",IDC_RAM_CHANNELS,187,14,57,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Channels #",IDC_STATIC_RAM_CHANNELS,129,15,51,9
+    CTEXT           "",IDC_RAM_TYPE_2,45,14,67,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Type",IDC_STATIC_RAM_TYPE,11,15,25,9
+    CTEXT           "",IDC_RAM_COMMAND_RATE,119,123,57,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Command Rate (CR)",IDC_STATIC_RAM_COMMAND_RATE,17,124,92,9
+END
+
+IDD_DISPLAY_DIALOG DIALOGEX 0, 0, 265, 197
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Display Device Selection",IDC_STATIC_DISPLAY_GENERAL,4,2,257,33
+    COMBOBOX        IDC_COMBO_DISPLAY,11,15,114,59,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "GPU",IDC_STATIC,4,35,257,49
+    GROUPBOX        "Clocks",IDC_STATIC,4,87,120,51
+    COMBOBOX        IDC_COMBO_PERFLEVEL,175,15,68,59,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Perf Level",IDC_STATIC_DISPLAY_PERFLEVEL,129,16,37,9
+    CTEXT           "",IDC_CORE_CLOCK_CURRENT,48,98,61,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_SHADERS_CLOCK_CURRENT,48,109,61,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_MEMORY_CLOCK_CURRENT,48,120,61,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Core",IDC_STATIC_CORE,10,99,31,8
+    RTEXT           "Shaders",IDC_STATIC_SHADERS,10,110,31,8
+    RTEXT           "Memory",IDC_STATIC_MMORY,10,121,31,8
+    RTEXT           "Codename",IDC_LABEL_GPU_CODENAME,7,58,39,9
+    RTEXT           "Name",IDC_LABEL_GPU_NAME,7,47,39,9
+    CTEXT           "",IDC_GPU_NAME,51,46,203,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Technology",IDC_LABEL_GPU_PROCESS,6,69,40,9
+    CTEXT           "",IDC_VRAM_SIZE,179,98,61,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Size",IDC_LABEL_VRAM_SIZE,142,100,32,9
+    CTEXT           "",IDC_VRAM_TYPE,179,109,61,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Type",IDC_LABEL_VRAM_TYPE,140,110,34,9
+    CTEXT           "",IDC_VRAM_BUS_WIDTH,179,120,61,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Bus Width",IDC_LABEL_VRAM_BUS_WIDTH,141,121,33,9
+    GROUPBOX        "Memory",IDC_STATIC_GROUP_CLOCKS2,131,87,118,51
+    CTEXT           "",IDC_GPU_CODENAME,51,57,63,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",IDC_GPU_PROCESS,51,68,63,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Vendor/Model",IDC_LABEL_GPU_PCI_ID,138,58,45,9
+    CTEXT           "",IDC_GPU_PCI_ID,188,57,66,10,SS_CENTERIMAGE | SS_SUNKEN
+    RTEXT           "Sub V/M",IDC_LABEL_GPU_PCI_SUBID,137,68,45,9
+    CTEXT           "",IDC_GPU_PCI_SUBID,188,68,66,10,SS_CENTERIMAGE | SS_SUNKEN
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CPUINFO_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 261
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 192
+    END
+
+    IDD_MONITORING_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 260
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 192
+    END
+
+    IDD_SPD_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 261
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 195
+    END
+
+    IDD_MEMORY_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 190
+    END
+
+    IDD_DISPLAY_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 261
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 194
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\SystemInfo.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "..\\res\\SystemInfo.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_INTEL               BITMAP                  "..\\res\\intel.bmp"
+IDB_INTEL_COREI7        BITMAP                  "..\\res\\intel_corei7.bmp"
+IDB_INTEL_COREI5        BITMAP                  "..\\res\\intel_corei5.bmp"
+IDB_INTEL_COREI3        BITMAP                  "..\\res\\intel_corei3.bmp"
+IDB_INTEL_P2            BITMAP                  "..\\res\\intel_p2.bmp"
+IDB_INTEL_P3            BITMAP                  "..\\res\\intel_p3.bmp"
+IDB_INTEL_P3_M          BITMAP                  "..\\res\\intel_p3_m.bmp"
+IDB_INTEL_PENTIUM_M     BITMAP                  "..\\res\\intel_pentium_m.bmp"
+IDB_INTEL_P4            BITMAP                  "..\\res\\intel_p4.bmp"
+IDB_INTEL_CORE2_DUO     BITMAP                  "..\\res\\intel_core2_duo.bmp"
+IDB_AMD                 BITMAP                  "..\\res\\amd.bmp"
+IDB_AMD_K6              BITMAP                  "..\\res\\amd_k6.bmp"
+IDB_INTEL_P4_EE         BITMAP                  "..\\res\\intel_p4_ee.bmp"
+IDB_INTEL_P4_HT         BITMAP                  "..\\res\\intel_p4_ht.bmp"
+IDB_INTEL_P4_M          BITMAP                  "..\\res\\intel_pentium_m.bmp"
+IDB_INTEL_PENTIUM_XE    BITMAP                  "..\\res\\intel_pentium_xe.bmp"
+IDB_INTEL_XEON          BITMAP                  "..\\res\\intel_xeon.bmp"
+IDB_INTEL_CELERON_D     BITMAP                  "..\\res\\intel_celeron_d.bmp"
+IDB_INTEL_CELERON_M     BITMAP                  "..\\res\\intel_celeron_m.bmp"
+IDB_INTEL_CELERON       BITMAP                  "..\\res\\intel_celeron.bmp"
+IDB_INTEL_COREI7_EE     BITMAP                  "..\\res\\intel_corei7_ee.bmp"
+IDB_INTEL_ITANIUM       BITMAP                  "..\\res\\intel_itanium.bmp"
+IDB_INTEL_PENTIUM_D     BITMAP                  "..\\res\\intel_pentium_d.bmp"
+IDB_INTEL_CORE_DUO      BITMAP                  "..\\res\\intel_core_duo.bmp"
+IDB_INTEL_CORE_SOLO     BITMAP                  "..\\res\\intel_core_solo.bmp"
+IDB_INTEL_CORE2_SOLO    BITMAP                  "..\\res\\intel_core2_solo.bmp"
+IDB_INTEL_CORE2_QUAD    BITMAP                  "..\\res\\intel_core2_quad.bmp"
+IDB_INTEL_CORE2_PENTIUM BITMAP                  "..\\res\\intel_pentium.bmp"
+IDB_AMD_K6_2            BITMAP                  "..\\res\\amd_k6_2.bmp"
+IDB_AMD_K6_3            BITMAP                  "..\\res\\amd_K6_3.bmp"
+IDB_AMD_ATHLON          BITMAP                  "..\\res\\amd_athlon.bmp"
+IDB_AMD_ATHLON_XP       BITMAP                  "..\\res\\amd_athlon_xp.bmp"
+IDB_AMD_ATHLON64_FX     BITMAP                  "..\\res\\amd_athlon64_fx.bmp"
+IDB_AMD_OPTERON         BITMAP                  "..\\res\\amd_opteron.bmp"
+IDB_VIA                 BITMAP                  "..\\res\\via.bmp"
+IDB_VIA_C3              BITMAP                  "..\\res\\via_c3.bmp"
+IDB_AMD_ATHLON_MP       BITMAP                  "..\\res\\amd_athlon_mp.bmp"
+IDB_AMD_ATHLON64        BITMAP                  "..\\res\\amd_athlon64.bmp"
+IDB_AMD_ATHLON64_M      BITMAP                  "..\\res\\amd_athlon64_m.bmp"
+IDB_AMD_DURON           BITMAP                  "..\\res\\amd_duron.bmp"
+IDB_AMD_SEMPRON         BITMAP                  "..\\res\\amd_sempron_m.bmp"
+IDB_AMD_SEMPRON_K10     BITMAP                  "..\\res\\amd_sempron_k10.bmp"
+IDB_AMD_TURION64        BITMAP                  "..\\res\\amd_turion64.bmp"
+IDB_AMD_TURION64_X2     BITMAP                  "..\\res\\amd_turion_64_x2.bmp"
+IDB_AMD_ATHLON64_X2     BITMAP                  "..\\res\\amd_athlon64_x2.bmp"
+IDB_AMD_PHENOM          BITMAP                  "..\\res\\amd_phenom.bmp"
+IDB_VIA_C7              BITMAP                  "..\\res\\via_c7.bmp"
+IDB_VIA_C7_M            BITMAP                  "..\\res\\via_c7_m.bmp"
+IDB_AMD_PHENOM_X3       BITMAP                  "..\\res\\amd_phenom_x3.bmp"
+IDB_AMD_PHENOM2         BITMAP                  "..\\res\\amd_phenom2.bmp"
+IDB_AMD_PHENOM2_X2      BITMAP                  "..\\res\\amd_phenom2_x2.bmp"
+IDB_AMD_ATHLON2_X2      BITMAP                  "..\\res\\amd_athlon2_x2.bmp"
+IDB_AMD_ATHLON2         BITMAP                  "..\\res\\amd_athlon2.bmp"
+IDB_AMD_PHENOM_FX       BITMAP                  "..\\res\\amd_phenom_fx.bmp"
+IDB_AMD_TURION64_K10    BITMAP                  "..\\res\\amd_turion64_k10.bmp"
+IDB_AMD_TURION64_ULTRA  BITMAP                  "..\\res\\amd_turion64_ultra.bmp"
+IDB_VIA_EDEN            BITMAP                  "..\\res\\via_eden.bmp"
+IDB_CYRIX               BITMAP                  "..\\res\\cyrix.bmp"
+IDB_VIA_NANO            BITMAP                  "..\\res\\via_nano.bmp"
+IDB_AMD_PHENOM2_X4      BITMAP                  "..\\res\\amd_phenom2_x4.bmp"
+IDB_AMD_PHENOM2_X6      BITMAP                  "..\\res\\amd_phenom2_x6.bmp"
+IDB_INTEL_PENTIUM       BITMAP                  "..\\res\\intel_pentium.bmp"
+IDB_INTEL_COREI7_V2     BITMAP                  "..\\res\\intel_corei7_v2.bmp"
+IDB_INTEL_COREI7XE_V2   BITMAP                  "..\\res\\intel_corei7xe_v2.bmp"
+IDB_INTEL_COREI5_V2     BITMAP                  "..\\res\\intel_corei5_v2.bmp"
+IDB_INTEL_COREI3_V2     BITMAP                  "..\\res\\intel_corei3_v2.bmp"
+IDB_INTEL_XEON_V2       BITMAP                  "..\\res\\intel_xeon_v2.bmp"
+IDB_AMD_ATHLON_NEO      BITMAP                  "..\\res\\amd_athlon_neo.bmp"
+IDB_AMD_ATHLON_K10      BITMAP                  "..\\res\\amd_athlon_k10.bmp"
+IDB_VIA_C7_D            BITMAP                  "..\\res\\via_c7_d.bmp"
+IDB_TRANSMETA_EFFICEON  BITMAP                  "..\\res\\transmeta_efficeon.bmp"
+IDB_INTEL_COREI7_V4     BITMAP                  "..\\res\\intel_corei7_v4.bmp"
+IDB_INTEL_COREI5_V4     BITMAP                  "..\\res\\intel_corei5_v4.bmp"
+IDB_VIA_EDEN_X2         BITMAP                  "..\\res\\intel_corei3_v4.bmp"
+IDB_INTEL_XEON_V4       BITMAP                  "..\\res\\intel_xeon_v4.bmp"
+IDB_INTEL_PENTIUM_V4    BITMAP                  "..\\res\\intel_pentium_v4.bmp"
+IDB_AMD_VISION          BITMAP                  "..\\res\\amd_vision.bmp"
+IDB_AMD_K15_OPTERON     BITMAP                  "..\\res\\amd_k15_opteron.bmp"
+IDB_AMD_OPTERON_K10     BITMAP                  "..\\res\\amd_opteron_k10.bmp"
+IDB_AMD_K15_A10T        BITMAP                  "..\\res\\amd_k15_a10t.bmp"
+IDB_AMD_K15_A10R        BITMAP                  "..\\res\\amd_k15_a10r.bmp"
+IDB_AMD_K15_A8R         BITMAP                  "..\\res\\amd_k15_a8r.bmp"
+IDB_AMD_ATHLON_X4_K15   BITMAP                  "..\\res\\amd_k15_athlon_x4.bmp"
+IDB_AMD_K15_FXB         BITMAP                  "..\\res\\amd_k15_fxb.bmp"
+IDB_AMD_K15_FXV         BITMAP                  "..\\res\\amd_k15_fxv.bmp"
+IDB_AMD_K16_A6K         BITMAP                  "..\\res\\amd_k16_a6k.bmp"
+IDB_AMD_K16_A4K         BITMAP                  "..\\res\\amd_k16_a4k.bmp"
+IDB_VIA_WINCHIP         BITMAP                  "..\\res\\via_winchip.bmp"
+IDB_VIA_NANO_X2         BITMAP                  "..\\res\\via_nano_x2.bmp"
+IDB_VIA_QUADCORE        BITMAP                  "..\\res\\via_quadcore.bmp"
+IDB_INTEL_ATOM          BITMAP                  "..\\res\\intel_atom.bmp"
+IDB_INTEL_ATOM_V2       BITMAP                  "..\\res\\intel_atom_v2.bmp"
+IDB_INTEL_ATOM_V4       BITMAP                  "..\\res\\intel_atom_v4.bmp"
+IDB_INTEL_P1            BITMAP                  "..\\res\\intel_p1.bmp"
+IDB_INTEL_P1MMX         BITMAP                  "..\\res\\intel_p1mmx.bmp"
+IDB_EMPTY               BITMAP                  "..\\res\\empty.bmp"
+IDB_INTEL_PPRO          BITMAP                  "..\\res\\intel_ppro.bmp"
+IDB_INTEL_CELERON_V4    BITMAP                  "..\\res\\intel_celeron_v4.bmp"
+IDB_AMD_K16_OPTERON     BITMAP                  "..\\res\\amd_k16_opteron.bmp"
+IDB_AMD_K16_ATHLON      BITMAP                  "..\\res\\amd_k16_athlon.bmp"
+IDB_AMD_K16_SEMPRON     BITMAP                  "..\\res\\amd_k16_sempron.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+IDR_242                 RT_MANIFEST             "..\\SystemInfo.exe.manifest"
+#endif    // French (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\SystemInfo.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
