@@ -41,10 +41,8 @@ public class Service : WebSocketBehavior {
       send_message("hardware_data", server.hardware_data);
     } else if (message.tag == "get_smart_data") {
       send_message("smart_data", server.smart_data);
-    } else {
-      if (server.fifo.Count < 1024) {
-        server.fifo.Enqueue(message);
-      }
+    } else if (server.fifo.Count < 1024) {
+      server.fifo.Enqueue(message);
     }
   }
 

@@ -39,8 +39,8 @@ class Program {
   }
 
   static void ui_click(object sender, EventArgs e) {
-    string path = Tools.get_program_path() + "/";
-    Tools.run_process(path + settings.browser_path, path + settings.ui_path);
+    string path = Tools.get_program_path();
+    Tools.run_process(Path.Combine(path, settings.browser_path), Path.Combine(path, settings.ui_path));
   }
 
   static void exit_click(object sender, EventArgs e) {
@@ -50,6 +50,7 @@ class Program {
 
   static void Main(string[] args) {
     is_running = true;
+    Directory.SetCurrentDirectory(Tools.get_program_path());
     log = new Logger("log.txt");
     log.add("server started\n");
     log.add("is_only_instance: ");
