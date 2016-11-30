@@ -1,28 +1,33 @@
 using System;
 using System.Collections.Generic;
 
+public class Data {
+  public string name;
+  public double value;
+}
+
 public class MB_report {
   public string name;
-  public Dictionary<string, double> fan;
-  public Dictionary<string, double> temp;
+  public List<Data> fans;
+  public List<Data> temps;
 }
 
 public class CPU_report {
   public string name;
-  public Dictionary<string, double> load;
-  public Dictionary<string, double> temp;
+  public List<Data> loads;
+  public List<Data> temps;
 }
 
 public class HDD_report {
   public string name;
-  public Dictionary<string, double> temp;
+  public List<Data> temps;
 }
 
 public class GPU_report {
   public string name;
-  public Dictionary<string, double> fan;
-  public Dictionary<string, double> load;
-  public Dictionary<string, double> temp;
+  public List<Data> fans;
+  public List<Data> loads;
+  public List<Data> temps;
 }
 
 public class Monitor_report {
@@ -146,7 +151,7 @@ class CPUID {
       ref extended_error_code);
   }
 
-  public Dictionary<string, double> get_sensor_list(int device_index, int sensor_class) {
+  public List<Data> get_sensor_list(int device_index, int sensor_class) {
     int sensor_index;
     int NbSensors;
     bool result;
@@ -156,7 +161,7 @@ class CPUID {
     float fValue = 0;
     float fMinValue = 0;
     float fMaxValue = 0;
-    var sensors = new Dictionary<string, double>();
+    var sensors = new List<Data>();
     NbSensors = pSDK.GetNumberOfSensors(device_index, sensor_class);
     for (sensor_index = 0; sensor_index < NbSensors; sensor_index += 1) {
       result = pSDK.GetSensorInfos(device_index,
@@ -169,7 +174,10 @@ class CPUID {
         ref fMinValue,
         ref fMaxValue);
       if (result == true) {
-        sensors.Add(sensorname, Math.Round(fValue, 2));
+        var data = new Data();
+        data.name = sensorname;
+        data.value = Math.Round(fValue, 2);
+        sensors.Add(data);
       }
     }
     return sensors;
@@ -193,26 +201,26 @@ class CPUID {
       if (deviceclass == CPUIDSDK.CLASS_DEVICE_MAINBOARD) {
         var mb = new MB_report();
         mb.name = devicename;
-        mb.fan = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
-        mb.temp = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
+        mb.fans = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
+        mb.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
         report.mbs.Add(mb);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_PROCESSOR) {
         var cpu = new CPU_report();
         cpu.name = devicename;
-        cpu.load = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
-        cpu.temp = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
+        cpu.loads = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
+        cpu.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
         report.cpus.Add(cpu);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_DRIVE) {
         var hdd = new HDD_report();
         hdd.name = devicename;
-        hdd.temp = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
+        hdd.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
         report.hdds.Add(hdd);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_DISPLAY_ADAPTER) {
         var gpu = new GPU_report();
         gpu.name = devicename;
-        gpu.fan = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
-        gpu.load = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
-        gpu.temp = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
+        gpu.fans = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
+        gpu.loads = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
+        gpu.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
         report.gpus.Add(gpu);
       }
     }
