@@ -2,11 +2,38 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="main.css">
 </head>
 <body>
 <div id="grid"><h1>Connecting...</h1></div>
-<script src="js/jbog_client.js"></script>
-<script src="js/main.js"></script>
+<script src="jbog_client.js"></script>
+<script>
+function $(element) {
+  return document.querySelector(element);
+}
+
+function main() {
+  function update(hw) {
+    $("#grid").innerHTML = JSON.stringify(hw, undefined, 2);
+  }
+  var client_data;
+
+  var jbog = jbog_client.make();
+
+  jbog.on("client_data", function (data) {
+    if (client_data === undefined) {
+      client_data = data;
+    } else {
+      jbog.send_message("set_client_data", client_data);
+    }
+    jbog.repeat_message("get_hardware_data");
+    jbog.on("hardware_data", update);
+  });
+
+  jbog.run("127.0.0.1", 8000);
+}
+
+main();
+
+</script>
 </body>
 </html>

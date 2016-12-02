@@ -6,35 +6,41 @@ public class Data {
   public double value;
 }
 
-public class MB_report {
+public class MB {
   public string name;
   public List<Data> fans;
   public List<Data> temps;
 }
 
-public class CPU_report {
+public class CPU {
   public string name;
   public List<Data> loads;
   public List<Data> temps;
 }
 
-public class HDD_report {
+public class HDD {
   public string name;
   public List<Data> temps;
 }
 
-public class GPU_report {
+public class GPU {
   public string name;
   public List<Data> fans;
   public List<Data> loads;
   public List<Data> temps;
+}
+
+public class Memory {
+  public double free;
+  public double total;
 }
 
 public class Monitor_report {
-  public List<MB_report> mbs;
-  public List<CPU_report> cpus;
-  public List<HDD_report> hdds;
-  public List<GPU_report> gpus;
+  public List<MB> mbs;
+  public List<CPU> cpus;
+  public List<HDD> hdds;
+  public List<GPU> gpus;
+  public Memory memory;
 }
 
 public class Attribute {
@@ -183,40 +189,48 @@ class CPUID {
     return sensors;
   }
 
+  public Memory get_memory_usage() {
+    var memory = new Memory();
+    var info = new Microsoft.VisualBasic.Devices.ComputerInfo();
+    memory.total = info.TotalPhysicalMemory;
+    memory.free = info.AvailablePhysicalMemory;
+    return memory;
+  }
+
   public Monitor_report get_monitor_report() {
     int NbDevices;
     int device_index;
     string devicename;
     int deviceclass;
     var report = new Monitor_report();
-    report.mbs = new List<MB_report>();
-    report.cpus = new List<CPU_report>();
-    report.hdds = new List<HDD_report>();
-    report.gpus = new List<GPU_report>();
+    report.mbs = new List<MB>();
+    report.cpus = new List<CPU>();
+    report.hdds = new List<HDD>();
+    report.gpus = new List<GPU>();
     pSDK.RefreshInformation();
     NbDevices = pSDK.GetNumberOfDevices();
     for (device_index = 0; device_index < NbDevices; device_index += 1) {
       devicename = pSDK.GetDeviceName(device_index);
       deviceclass = pSDK.GetDeviceClass(device_index);
       if (deviceclass == CPUIDSDK.CLASS_DEVICE_MAINBOARD) {
-        var mb = new MB_report();
+        var mb = new MB();
         mb.name = devicename;
         mb.fans = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
         mb.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
         report.mbs.Add(mb);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_PROCESSOR) {
-        var cpu = new CPU_report();
+        var cpu = new CPU();
         cpu.name = devicename;
         cpu.loads = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
         cpu.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
         report.cpus.Add(cpu);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_DRIVE) {
-        var hdd = new HDD_report();
+        var hdd = new HDD();
         hdd.name = devicename;
         hdd.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
         report.hdds.Add(hdd);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_DISPLAY_ADAPTER) {
-        var gpu = new GPU_report();
+        var gpu = new GPU();
         gpu.name = devicename;
         gpu.fans = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
         gpu.loads = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
@@ -224,6 +238,7 @@ class CPUID {
         report.gpus.Add(gpu);
       }
     }
+    report.memory = get_memory_usage();
     return report;
   }
 
