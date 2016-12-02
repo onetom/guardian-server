@@ -20,6 +20,7 @@ public class CPU {
 
 public class HDD {
   public string name;
+  public List<Data> loads;
   public List<Data> temps;
 }
 
@@ -227,6 +228,7 @@ class CPUID {
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_DRIVE) {
         var hdd = new HDD();
         hdd.name = devicename;
+        hdd.loads = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
         hdd.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
         report.hdds.Add(hdd);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_DISPLAY_ADAPTER) {
