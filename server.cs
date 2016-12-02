@@ -37,10 +37,12 @@ public class Service : WebSocketBehavior {
     var message = JsonConvert.DeserializeObject<Message>(e.Data);
     if (message.tag == "get_client_data") {
       send_message("client_data", server.client_data);
-    } else if (message.tag == "get_hardware_data") {
-      send_message("hardware_data", server.hardware_data);
+    } else if (message.tag == "get_monitor_data") {
+      send_message("monitor_data", server.monitor_data);
     } else if (message.tag == "get_smart_data") {
       send_message("smart_data", server.smart_data);
+    } else if (message.tag == "get_info_data") {
+      send_message("info_data", server.info_data);
     } else if (server.fifo.Count < 1024) {
       server.fifo.Enqueue(message);
     }
@@ -53,17 +55,18 @@ public class Service : WebSocketBehavior {
 
 public class Server {
   CPUID cpuid;
-  public Monitor_report hardware_data;
+  public Info_report info_data;
   public List<SMART_report> smart_data;
+  public Monitor_report monitor_data;
   Stopwatch monitor_timer;
   Stopwatch smart_timer;
   public dynamic client_data;
   WebSocketServer wssv { get; set; }
   public ConcurrentQueue<Message> fifo;
 
-  void update_hardware_data() {
+  void update_sensors() {
     if (monitor_timer.ElapsedMilliseconds > Program.settings.monitor_interval) {
-      hardware_data = cpuid.get_monitor_report();
+      monitor_data = cpuid.get_monitor_report();
       monitor_timer.Restart();
     }
     if (smart_timer.ElapsedMilliseconds > (1000 * 60 * 60)) {
@@ -94,7 +97,7 @@ public class Server {
     wssv.Start();
     run_plugins();
     while (Program.is_running) {
-      update_hardware_data();
+      update_sensors();
       process_messages();
       Thread.Sleep(100);
     }
@@ -111,10 +114,11 @@ public class Server {
       Application.Exit();
     }
     Program.log.add("ok\n");
+    monitor_data = cpuid.get_monitor_report();
+    smart_data = cpuid.get_smart_report();
+    info_data = cpuid.get_info_report();
     monitor_timer = Stopwatch.StartNew();
     smart_timer = Stopwatch.StartNew();
-    hardware_data = cpuid.get_monitor_report();
-    smart_data = cpuid.get_smart_report();
     fifo = new ConcurrentQueue<Message>();
     wssv = new WebSocketServer(Program.settings.port);
   }

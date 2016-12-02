@@ -4,5 +4,5 @@ settings.json: ok
 add_to_tray: ok
 client_data.json: ok
 CPUID: ok
-connection: 127.0.0.1:58865
+connection: 127.0.0.1:59741
 server stopped

@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 
 public class Data {
@@ -37,7 +38,7 @@ public class Memory {
 }
 
 public class Monitor_report {
-  public List<MB> mbs;
+  public MB mb;
   public List<CPU> cpus;
   public List<HDD> hdds;
   public List<GPU> gpus;
@@ -55,6 +56,52 @@ public class Attribute {
 public class SMART_report {
   public string name;
   public List<Attribute> attributes;
+}
+
+public class CPU_info {
+  public string name;
+  public string code_name;
+  public double tdp;
+  public double stock_clock;
+}
+
+public class MB_info {
+  public string vendor;
+  public string name;
+  public string nb;
+  public string sb;
+  public string bios_version;
+  public string bios_date;
+}
+
+public class HDD_info {
+  public double total;
+  public double free;
+  public string fs;
+  public string letter;
+  public string volume;
+}
+
+public class GPU_info {
+  public string name;
+  public string code_name;
+  public double clock;
+  public double stock_clock;
+  public double memory_size;
+}
+
+public class Memory_info {
+  public string type;
+  public double size;
+  public double clock;
+}
+
+public class Info_report {
+  public MB_info mb;
+  public List<CPU_info> cpus;
+  public List<HDD_info> hdds;
+  public List<GPU_info> gpus;
+  public Memory_info memory;
 }
 
 class CPUID {
@@ -204,7 +251,7 @@ class CPUID {
     string devicename;
     int deviceclass;
     var report = new Monitor_report();
-    report.mbs = new List<MB>();
+    report.mb = new MB();
     report.cpus = new List<CPU>();
     report.hdds = new List<HDD>();
     report.gpus = new List<GPU>();
@@ -214,11 +261,9 @@ class CPUID {
       devicename = pSDK.GetDeviceName(device_index);
       deviceclass = pSDK.GetDeviceClass(device_index);
       if (deviceclass == CPUIDSDK.CLASS_DEVICE_MAINBOARD) {
-        var mb = new MB();
-        mb.name = devicename;
-        mb.fans = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
-        mb.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
-        report.mbs.Add(mb);
+        report.mb.name = devicename;
+        report.mb.fans = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
+        report.mb.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_PROCESSOR) {
         var cpu = new CPU();
         cpu.name = devicename;
@@ -270,6 +315,96 @@ class CPUID {
       smart_list.Add(smart);
     }
     return smart_list;
+  }
+
+  public List<HDD_info> get_hdd_info_list() {
+    var hdd_list = new List<HDD_info>();
+    var allDrives = DriveInfo.GetDrives();
+    foreach (DriveInfo d in allDrives) {
+      if (d.IsReady) {
+        var hdd = new HDD_info();
+        hdd.fs = d.DriveFormat;
+        hdd.letter = d.Name;
+        hdd.free = d.TotalFreeSpace;
+        hdd.total = d.TotalSize;
+        hdd.volume = d.VolumeLabel;
+        hdd_list.Add(hdd);
+      }
+    }
+    return hdd_list;
+  }
+
+  public List<CPU_info> get_cpu_info_list() {
+    var cpu_list = new List<CPU_info>();
+    for (int cpu_index = 0; cpu_index < pSDK.GetNumberOfProcessors(); cpu_index += 1) {
+      var cpu = new CPU_info();
+      cpu.name = pSDK.GetProcessorName(cpu_index);
+      cpu.code_name = pSDK.GetProcessorCodeName(cpu_index);
+      cpu.tdp = pSDK.GetProcessorTDP(cpu_index);
+      cpu.stock_clock = pSDK.GetProcessorStockClockFrequency(cpu_index);
+      cpu_list.Add(cpu);
+    }
+    return cpu_list;
+  }
+
+  public MB_info get_mb_info() {
+    var mb = new MB_info();
+    mb.vendor = pSDK.GetMainboardVendor();
+    mb.name = pSDK.GetMainboardModel();
+    mb.nb = pSDK.GetNorthBridgeModel();
+    mb.sb = pSDK.GetSouthBridgeModel();
+    mb.bios_version = pSDK.GetBIOSVersion();
+    mb.bios_date = pSDK.GetBIOSDate();
+    return mb;
+  }
+
+  public List<GPU_info> get_gpu_info_list() {
+    int size = 0;
+    var gpu_list = new List<GPU_info>();
+    for (int gpu_index = 0; gpu_index < pSDK.GetNumberOfDisplayAdapter(); gpu_index += 1) {
+      var gpu = new GPU_info();
+      var perf_level = pSDK.GetDisplayAdapterCurrentPerformanceLevel(gpu_index);
+      gpu.name = pSDK.GetDisplayAdapterName(gpu_index);
+      gpu.code_name = pSDK.GetDisplayAdapterCodeName(gpu_index);
+      gpu.clock = pSDK.GetDisplayAdapterClock(gpu_index, perf_level, CPUIDSDK.DISPLAY_CLOCK_DOMAIN_GRAPHICS);
+      gpu.stock_clock = pSDK.GetDisplayAdapterStockClock(gpu_index, perf_level, CPUIDSDK.DISPLAY_CLOCK_DOMAIN_GRAPHICS);
+      pSDK.GetDisplayAdapterMemorySize(gpu_index, ref size);
+      gpu.memory_size = size;
+      gpu_list.Add(gpu);
+    }
+    return gpu_list;
+  }
+
+  public Memory_info get_memory_info() {
+    string s;
+    var memory = new Memory_info();
+    switch (pSDK.GetMemoryType()) {
+      case CPUIDSDK.MEMORY_TYPE_SPM_RAM: s = "SPM"; break;
+      case CPUIDSDK.MEMORY_TYPE_RDRAM: s = "RDRAM"; break;
+      case CPUIDSDK.MEMORY_TYPE_EDO_RAM: s = "EDO"; break;
+      case CPUIDSDK.MEMORY_TYPE_FPM_RAM: s = "FPM"; break;
+      case CPUIDSDK.MEMORY_TYPE_SDRAM: s = "SDRAM"; break;
+      case CPUIDSDK.MEMORY_TYPE_DDR_SDRAM: s = "DDR"; break;
+      case CPUIDSDK.MEMORY_TYPE_DDR2_SDRAM: s = "DDR2"; break;
+      case CPUIDSDK.MEMORY_TYPE_DDR2_SDRAM_FB: s = "FB-DDR2"; break;
+      case CPUIDSDK.MEMORY_TYPE_DDR3_SDRAM: s = "DDR3"; break;
+      case CPUIDSDK.MEMORY_TYPE_DDR4_SDRAM: s = "DDR4"; break;
+      default: s = ""; break;
+    }
+    memory.type = s;
+    memory.size = pSDK.GetMemorySize();
+    memory.clock = pSDK.GetMemoryClockFrequency();
+    return memory;
+  }
+
+  public Info_report get_info_report() {
+    var info = new Info_report();
+    info.mb = get_mb_info();
+    info.cpus = get_cpu_info_list();
+    info.hdds = get_hdd_info_list();
+    info.gpus = get_gpu_info_list();
+    info.memory = get_memory_info();
+    return info;
   }
 
   ~CPUID() {

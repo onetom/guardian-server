@@ -25,8 +25,8 @@ function main() {
     } else {
       jbog.send_message("set_client_data", client_data);
     }
-    jbog.repeat_message("get_hardware_data");
-    jbog.on("hardware_data", update);
+    jbog.repeat_message("get_monitor_data");
+    jbog.on("monitor_data", update);
   });
 
   jbog.run("127.0.0.1", 8000);
