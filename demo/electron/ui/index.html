@@ -4,7 +4,9 @@
 <meta charset="utf-8">
 </head>
 <body>
-<div id="grid"><h1>Connecting...</h1></div>
+<div id="monitor"><h1>Connecting...</h1></div><br>
+<div id="info"></div><br>
+<div id="smart"></div>
 <script src="jbog_client.js"></script>
 <script>
 function $(element) {
@@ -12,9 +14,18 @@ function $(element) {
 }
 
 function main() {
-  function update(hw) {
-    $("#grid").innerHTML = JSON.stringify(hw, undefined, 2);
+  function update_monitor(hw) {
+    $("#monitor").innerHTML = JSON.stringify(hw, undefined, 2);
   }
+
+  function update_info(hw) {
+    $("#info").innerHTML = JSON.stringify(hw, undefined, 2);
+  }
+
+  function update_smart(hw) {
+    $("#smart").innerHTML = JSON.stringify(hw, undefined, 2);
+  }
+
   var client_data;
 
   var jbog = jbog_client.make();
@@ -26,7 +37,11 @@ function main() {
       jbog.send_message("set_client_data", client_data);
     }
     jbog.repeat_message("get_monitor_data");
-    jbog.on("monitor_data", update);
+    jbog.send_message("get_info_data");
+    jbog.send_message("get_smart_data");
+    jbog.on("monitor_data", update_monitor);
+    jbog.on("info_data", update_info);
+    jbog.on("smart_data", update_smart);
   });
 
   jbog.run("127.0.0.1", 8000);

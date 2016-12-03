@@ -18,6 +18,7 @@ class Settings {
   public List<string> plugins { get; set; }
   public int port { get; set; }
   public int monitor_interval { get; set; }
+  public int info_interval { get; set; }
 }
 
 class Program {

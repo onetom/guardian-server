@@ -59,7 +59,7 @@ public class Server {
   public List<SMART_report> smart_data;
   public Monitor_report monitor_data;
   Stopwatch monitor_timer;
-  Stopwatch smart_timer;
+  Stopwatch info_timer;
   public dynamic client_data;
   WebSocketServer wssv { get; set; }
   public ConcurrentQueue<Message> fifo;
@@ -69,9 +69,10 @@ public class Server {
       monitor_data = cpuid.get_monitor_report();
       monitor_timer.Restart();
     }
-    if (smart_timer.ElapsedMilliseconds > (1000 * 60 * 60)) {
+    if (info_timer.ElapsedMilliseconds > (1000 * 60 * Program.settings.info_interval)) {
       smart_data = cpuid.get_smart_report();
-      smart_timer.Restart();
+      info_data = cpuid.get_info_report();
+      info_timer.Restart();
     }
   }
 
@@ -118,7 +119,7 @@ public class Server {
     smart_data = cpuid.get_smart_report();
     info_data = cpuid.get_info_report();
     monitor_timer = Stopwatch.StartNew();
-    smart_timer = Stopwatch.StartNew();
+    info_timer = Stopwatch.StartNew();
     fifo = new ConcurrentQueue<Message>();
     wssv = new WebSocketServer(Program.settings.port);
   }

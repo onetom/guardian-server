@@ -4,5 +4,6 @@
   "ui_path": "electron/ui",
   "plugins": [],
   "monitor_interval": 1000,
+  "info_interval": 15,
   "port": 8000
 }
