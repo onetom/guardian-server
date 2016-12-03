@@ -11,14 +11,14 @@ public class MB {
   public string name;
   public List<Data> fans;
   public List<Data> temps;
-  public List<Data> voltages;
+  public List<Data> volts;
 }
 
 public class CPU {
   public string name;
   public List<Data> loads;
   public List<Data> temps;
-  public List<Data> voltages;
+  public List<Data> volts;
 }
 
 public class HDD {
@@ -266,13 +266,13 @@ class CPUID {
         report.mb.name = devicename;
         report.mb.fans = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
         report.mb.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
-        report.mb.voltages = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_VOLTAGE);
+        report.mb.volts = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_VOLTAGE);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_PROCESSOR) {
         var cpu = new CPU();
         cpu.name = devicename;
         cpu.loads = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
         cpu.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
-        cpu.voltages = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_VOLTAGE);
+        cpu.volts = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_VOLTAGE);
         report.cpus.Add(cpu);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_DRIVE) {
         var hdd = new HDD();

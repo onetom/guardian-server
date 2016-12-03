@@ -1,7 +1,7 @@
 {
   "server_name": "guardian_server",
   "browser_path": "electron/electron.exe",
-  "ui_path": "electron/ui",
+  "ui_path": "ui",
   "plugins": [],
   "monitor_interval": 1000,
   "info_interval": 15,
