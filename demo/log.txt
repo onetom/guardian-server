@@ -2,7 +2,7 @@ one_instance: ok
 settings.json: ok
 add_to_tray: ok
 client_data.json: ok
-CPUID: ok
+hardware.json: ok
 keyboard: SSE
-connection: 127.0.0.1:51271
-connection: 127.0.0.1:51297
+CPUID: ok
+connection: 127.0.0.1:60159

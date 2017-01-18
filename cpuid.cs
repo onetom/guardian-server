@@ -104,6 +104,7 @@ public class Info_report {
   public List<HDD_info> hdds;
   public List<GPU_info> gpus;
   public Memory_info memory;
+  public dynamic other;
 }
 
 class CPUID {

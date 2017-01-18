@@ -61,9 +61,9 @@ public class Server {
   Stopwatch monitor_timer;
   Stopwatch info_timer;
   public dynamic client_data;
+  public Hardware hw;
   WebSocketServer wssv { get; set; }
   public ConcurrentQueue<Message> fifo;
-  dynamic keyboard;
 
   void update_sensors() {
     if (monitor_timer.ElapsedMilliseconds > Program.settings.monitor_interval) {
@@ -72,7 +72,7 @@ public class Server {
     }
     if (info_timer.ElapsedMilliseconds > (1000 * 60 * Program.settings.info_interval)) {
       smart_data = cpuid.get_smart_report();
-      info_data = cpuid.get_info_report();
+      info_data = get_info_data();
       info_timer.Restart();
     }
   }
@@ -91,11 +91,7 @@ public class Server {
         client_data = message.data;
         File.WriteAllText("client_data.json", JsonConvert.SerializeObject(client_data));
       } else if (message.tag == "set_keyboard_color" && Program.settings.keyboard != "none") {
-        int zone = message.data.zone;
-        int r = message.data.r;
-        int g = message.data.g;
-        int b = message.data.b;
-        keyboard.set_zone_color(zone, r, g, b);
+        hw.set_keyboard_color(message.data);
       }
     }
   }
@@ -112,26 +108,31 @@ public class Server {
     wssv.Stop();
   }
 
+  private void on_exit(object sender, EventArgs e) {
+    hw.save_state();
+  }
+
+  Info_report get_info_data() {
+    var info = cpuid.get_info_report();
+    info.other = hw.state;
+    return info;
+  }
+
   public Server() {
     Program.log.add("client_data.json: ");
     client_data = JsonConvert.DeserializeObject(File.ReadAllText("client_data.json"));
     Program.log.add("ok\n");
+    hw = new Hardware();
     cpuid = new CPUID();
     Program.log.add("CPUID: ");
     if (!cpuid.ok) {
       Application.Exit();
     }
     Program.log.add("ok\n");
-    Program.log.add("keyboard: ");
-    if (Program.settings.keyboard == "SSE") {
-      keyboard = new SSE();
-      Program.log.add("SSE\n");
-    } else {
-      Program.log.add("none\n");
-    }
+    Application.ApplicationExit += new EventHandler(this.on_exit);
     monitor_data = cpuid.get_monitor_report();
     smart_data = cpuid.get_smart_report();
-    info_data = cpuid.get_info_report();
+    info_data = get_info_data();
     monitor_timer = Stopwatch.StartNew();
     info_timer = Stopwatch.StartNew();
     fifo = new ConcurrentQueue<Message>();
