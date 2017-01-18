@@ -129,7 +129,7 @@ public class SSE {
   public void send_ping() {
     var j = new JObject();
     j.Add("game", server_name);
-    http_post("/game_event", j.ToString());
+    http_post("/game_heartbeat", j.ToString());
   }
 
   public void timer_event(Object source, System.Timers.ElapsedEventArgs e) {

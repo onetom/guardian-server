@@ -5,4 +5,4 @@ client_data.json: ok
 hardware.json: ok
 keyboard: SSE
 CPUID: ok
-connection: 127.0.0.1:60159
+connection: 127.0.0.1:64474
