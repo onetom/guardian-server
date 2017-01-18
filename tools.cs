@@ -16,7 +16,7 @@ public class Logger {
 }
 
 public static class Tools {
-  public static bool is_only_instance() {
+  public static bool one_instance() {
     return Process.GetProcessesByName(
       Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)
     ).Length == 1;

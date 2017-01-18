@@ -63,6 +63,7 @@ public class Server {
   public dynamic client_data;
   WebSocketServer wssv { get; set; }
   public ConcurrentQueue<Message> fifo;
+  dynamic keyboard;
 
   void update_sensors() {
     if (monitor_timer.ElapsedMilliseconds > Program.settings.monitor_interval) {
@@ -89,6 +90,12 @@ public class Server {
       if (message.tag == "set_client_data") {
         client_data = message.data;
         File.WriteAllText("client_data.json", JsonConvert.SerializeObject(client_data));
+      } else if (message.tag == "set_keyboard_color" && Program.settings.keyboard != "none") {
+        int zone = message.data.zone;
+        int r = message.data.r;
+        int g = message.data.g;
+        int b = message.data.b;
+        keyboard.set_zone_color(zone, r, g, b);
       }
     }
   }
@@ -115,6 +122,13 @@ public class Server {
       Application.Exit();
     }
     Program.log.add("ok\n");
+    Program.log.add("keyboard: ");
+    if (Program.settings.keyboard == "SSE") {
+      keyboard = new SSE();
+      Program.log.add("SSE\n");
+    } else {
+      Program.log.add("none\n");
+    }
     monitor_data = cpuid.get_monitor_report();
     smart_data = cpuid.get_smart_report();
     info_data = cpuid.get_info_report();

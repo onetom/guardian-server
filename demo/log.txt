@@ -1,8 +1,8 @@
-server started
-is_only_instance: ok
+one_instance: ok
 settings.json: ok
 add_to_tray: ok
 client_data.json: ok
 CPUID: ok
-connection: 127.0.0.1:64128
-server stopped
+keyboard: SSE
+connection: 127.0.0.1:51271
+connection: 127.0.0.1:51297

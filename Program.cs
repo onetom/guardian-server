@@ -19,6 +19,7 @@ class Settings {
   public int port { get; set; }
   public int monitor_interval { get; set; }
   public int info_interval { get; set; }
+  public string keyboard { get; set; }
 }
 
 class Program {
@@ -53,9 +54,8 @@ class Program {
     is_running = true;
     Directory.SetCurrentDirectory(Tools.get_program_path());
     log = new Logger("log.txt");
-    log.add("server started\n");
-    log.add("is_only_instance: ");
-    if (!Tools.is_only_instance()) {
+    log.add("one_instance: ");
+    if (!Tools.one_instance()) {
       MessageBox.Show("An instance of the server is already running");
       return;
     }

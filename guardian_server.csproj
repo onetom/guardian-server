@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="sse.cs" />
     <Compile Include="cpuidsdk.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="tools.cs" />

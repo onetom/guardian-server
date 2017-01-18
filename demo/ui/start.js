@@ -26,7 +26,7 @@ app.on("window-all-closed", function() {
 app.on("ready", function() {
   mainWindow = new electron.BrowserWindow({
     title: "UI Demo",
-    icon: "browser_icon.png",
+    icon: "ui_icon.png",
     webPreferences: { nodeIntegration: false }
   });
   mainWindow.maximize();
