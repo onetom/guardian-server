@@ -26,7 +26,7 @@ public class SSE {
     }
   }
 
-  string http_post(string command, string data) {
+  string http_post_raw(string command, string data) {
     string url = "http://" + address + command;
     try {
       var client = new WebClient();
@@ -35,6 +35,13 @@ public class SSE {
     } catch (WebException ex) {
       return new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
     }
+  }
+
+  void http_post(string command, string data) {
+    Console.WriteLine("command: " + command + "\n");
+    Console.WriteLine("data: " + data + "\n");
+    Console.WriteLine("SSE answer:");
+    Console.WriteLine(http_post_raw(command, data));
   }
 
   void remove_game() {
