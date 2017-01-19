@@ -31,6 +31,7 @@ public class Hardware {
 
   public void set_keyboard_color(dynamic data) {
     int zone = data.zone;
+    zone = Math.Min(zone, state.keyboard.zones.Length - 1);
     int r = data.r;
     int g = data.g;
     int b = data.b;

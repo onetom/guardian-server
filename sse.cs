@@ -38,8 +38,8 @@ public class SSE {
   }
 
   void http_post(string command, string data) {
-    Console.WriteLine("command: " + command + "\n");
-    Console.WriteLine("data: " + data + "\n");
+    Console.WriteLine("command: " + command);
+    Console.WriteLine("data: " + data);
     Console.WriteLine("SSE answer:");
     Console.WriteLine(http_post_raw(command, data));
   }
