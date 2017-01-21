@@ -34,17 +34,25 @@ function main() {
     jbog.on("sensors", update_monitor);
     jbog.on("devices", update_info);
 
+/*
+    jbog.send_message("set_keyboard_color", {
+        zone: 0,
+        r: 255,
+        g: 0,
+        b: 255
+      }
+    );
+
     jbog.send_message("set_plugin_effect", {
       name: "monitor_0",
-      data: {
-        is_on: 1,
-        sensor_type: "cpu_temp",
-        start_value: 20,
-        end_value: 60,
-        start_color: { r: 0, g: 255, b: 0 },
-        end_color: { r: 255, g: 0, b: 0 }
-      }
+      is_on: 0,
+      sensor_type: "cpu_temp",
+      start_value: 20,
+      end_value: 60,
+      start_color: { r: 0, g: 255, b: 0 },
+      end_color: { r: 255, g: 0, b: 0 }
     });
+*/
   });
 
   jbog.run("127.0.0.1", 8000);

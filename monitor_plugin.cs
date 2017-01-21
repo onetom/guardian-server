@@ -49,8 +49,8 @@ class Program {
     } else if (message.tag == "devices") {
       devices = message.data.ToObject<Dictionary<string, dynamic>>();
     } else if (message.tag == "set_plugin_effect") {
-      string name = message.data.name;
-      dynamic data = message.data.data;
+      dynamic data = message.data;
+      string name = data.name;
       if (name == "monitor_0") {
         zone = 0;
         monitor = data.ToObject<Monitor>();
