@@ -2,9 +2,9 @@
   "server_name": "guardian_server",
   "browser_path": "electron/electron.exe",
   "ui_path": "ui",
-  "plugins": [],
-  "monitor_interval": 1000,
-  "info_interval": 15,
+  "plugins": ["monitor_plugin.exe"],
+  "sensors_interval": 1000,
+  "devices_interval": 15,
   "port": 8000,
-  "keyboard": "SSE"
+  "led_keyboard": "SSE"
 }

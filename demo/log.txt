@@ -1,9 +1,9 @@
 one_instance: ok
 settings.json: ok
 add_to_tray: ok
-client_data.json: ok
-hardware.json: ok
-keyboard: SSE
 CPUID: ok
-connection: 127.0.0.1:51609
-connection: 127.0.0.1:51610
+hardware.json: ok
+led_keyboard: SSE
+plugin: monitor_plugin.exe
+connection: 127.0.0.1:52201
+server stopped

@@ -2,49 +2,74 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Data {
+public class MB_sensors {
   public string name;
-  public double value;
+  public Dictionary<string, float> fans;
+  public Dictionary<string, float> temps;
+  public Dictionary<string, float> volts;
 }
 
-public class MB {
+public class CPU_sensors {
   public string name;
-  public List<Data> fans;
-  public List<Data> temps;
-  public List<Data> volts;
+  public Dictionary<string, float> loads;
+  public Dictionary<string, float> temps;
+  public Dictionary<string, float> volts;
 }
 
-public class CPU {
+public class HDD_sensors {
   public string name;
-  public List<Data> loads;
-  public List<Data> temps;
-  public List<Data> volts;
+  public Dictionary<string, float> loads;
+  public Dictionary<string, float> temps;
 }
 
-public class HDD {
+public class GPU_sensors {
   public string name;
-  public List<Data> loads;
-  public List<Data> temps;
+  public Dictionary<string, float> fans;
+  public Dictionary<string, float> loads;
+  public Dictionary<string, float> temps;
 }
 
-public class GPU {
+public class Memory_sensors {
+  public float free;
+  public float total;
+}
+
+public class CPU_info {
   public string name;
-  public List<Data> fans;
-  public List<Data> loads;
-  public List<Data> temps;
+  public string code_name;
+  public float tdp;
+  public float stock_clock;
 }
 
-public class Memory {
-  public double free;
-  public double total;
+public class MB_info {
+  public string vendor;
+  public string name;
+  public string nb;
+  public string sb;
+  public string bios_version;
+  public string bios_date;
 }
 
-public class Monitor_report {
-  public MB mb;
-  public List<CPU> cpus;
-  public List<HDD> hdds;
-  public List<GPU> gpus;
-  public Memory memory;
+public class HDD_info {
+  public float total;
+  public float free;
+  public string fs;
+  public string letter;
+  public string volume;
+}
+
+public class GPU_info {
+  public string name;
+  public string code_name;
+  public float clock;
+  public float stock_clock;
+  public float memory_size;
+}
+
+public class Memory_info {
+  public string type;
+  public float size;
+  public float clock;
 }
 
 public class Attribute {
@@ -58,53 +83,6 @@ public class Attribute {
 public class SMART_report {
   public string name;
   public List<Attribute> attributes;
-}
-
-public class CPU_info {
-  public string name;
-  public string code_name;
-  public double tdp;
-  public double stock_clock;
-}
-
-public class MB_info {
-  public string vendor;
-  public string name;
-  public string nb;
-  public string sb;
-  public string bios_version;
-  public string bios_date;
-}
-
-public class HDD_info {
-  public double total;
-  public double free;
-  public string fs;
-  public string letter;
-  public string volume;
-}
-
-public class GPU_info {
-  public string name;
-  public string code_name;
-  public double clock;
-  public double stock_clock;
-  public double memory_size;
-}
-
-public class Memory_info {
-  public string type;
-  public double size;
-  public double clock;
-}
-
-public class Info_report {
-  public MB_info mb;
-  public List<CPU_info> cpus;
-  public List<HDD_info> hdds;
-  public List<GPU_info> gpus;
-  public Memory_info memory;
-  public dynamic other;
 }
 
 class CPUID {
@@ -208,7 +186,7 @@ class CPUID {
       ref extended_error_code);
   }
 
-  public List<Data> get_sensor_list(int device_index, int sensor_class) {
+  public Dictionary<string, float> get_sensor_list(int device_index, int sensor_class) {
     int sensor_index;
     int NbSensors;
     bool result;
@@ -218,7 +196,7 @@ class CPUID {
     float fValue = 0;
     float fMinValue = 0;
     float fMaxValue = 0;
-    var sensors = new List<Data>();
+    var sensors = new Dictionary<string, float>();
     NbSensors = pSDK.GetNumberOfSensors(device_index, sensor_class);
     for (sensor_index = 0; sensor_index < NbSensors; sensor_index += 1) {
       result = pSDK.GetSensorInfos(device_index,
@@ -231,67 +209,66 @@ class CPUID {
         ref fMinValue,
         ref fMaxValue);
       if (result == true) {
-        var data = new Data();
-        data.name = sensorname;
-        data.value = Math.Round(fValue, 2);
-        sensors.Add(data);
+        sensors[sensorname] = (float) Math.Round(fValue, 2);
       }
     }
     return sensors;
   }
 
-  public Memory get_memory_usage() {
-    var memory = new Memory();
+  public Memory_sensors get_memory_usage() {
+    var memory = new Memory_sensors();
     var info = new Microsoft.VisualBasic.Devices.ComputerInfo();
     memory.total = info.TotalPhysicalMemory;
     memory.free = info.AvailablePhysicalMemory;
     return memory;
   }
 
-  public Monitor_report get_monitor_report() {
+  public void update_sensors(Dictionary<string, dynamic> sensors) {
     int NbDevices;
     int device_index;
     string devicename;
-    int deviceclass;
-    var report = new Monitor_report();
-    report.mb = new MB();
-    report.cpus = new List<CPU>();
-    report.hdds = new List<HDD>();
-    report.gpus = new List<GPU>();
+    int deviceclass;  
+    var mb = new MB_sensors();
+    var cpus = new List<CPU_sensors>();
+    var hdds = new List<HDD_sensors>();
+    var gpus = new List<GPU_sensors>();
     pSDK.RefreshInformation();
     NbDevices = pSDK.GetNumberOfDevices();
     for (device_index = 0; device_index < NbDevices; device_index += 1) {
       devicename = pSDK.GetDeviceName(device_index);
       deviceclass = pSDK.GetDeviceClass(device_index);
       if (deviceclass == CPUIDSDK.CLASS_DEVICE_MAINBOARD) {
-        report.mb.name = devicename;
-        report.mb.fans = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
-        report.mb.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
-        report.mb.volts = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_VOLTAGE);
+        mb.name = devicename;
+        mb.fans = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
+        mb.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
+        mb.volts = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_VOLTAGE);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_PROCESSOR) {
-        var cpu = new CPU();
+        var cpu = new CPU_sensors();
         cpu.name = devicename;
         cpu.loads = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
         cpu.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
         cpu.volts = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_VOLTAGE);
-        report.cpus.Add(cpu);
+        cpus.Add(cpu);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_DRIVE) {
-        var hdd = new HDD();
+        var hdd = new HDD_sensors();
         hdd.name = devicename;
         hdd.loads = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
         hdd.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
-        report.hdds.Add(hdd);
+        hdds.Add(hdd);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_DISPLAY_ADAPTER) {
-        var gpu = new GPU();
+        var gpu = new GPU_sensors();
         gpu.name = devicename;
         gpu.fans = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_FAN);
         gpu.loads = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
         gpu.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
-        report.gpus.Add(gpu);
+        gpus.Add(gpu);
       }
     }
-    report.memory = get_memory_usage();
-    return report;
+    sensors["mb"] = mb;
+    sensors["cpus"] = cpus;
+    sensors["hdds"] = hdds;
+    sensors["gpus"] = gpus;
+    sensors["memory"] = get_memory_usage();
   }
 
   public List<SMART_report> get_smart_report() {
@@ -402,14 +379,13 @@ class CPUID {
     return memory;
   }
 
-  public Info_report get_info_report() {
-    var info = new Info_report();
-    info.mb = get_mb_info();
-    info.cpus = get_cpu_info_list();
-    info.hdds = get_hdd_info_list();
-    info.gpus = get_gpu_info_list();
-    info.memory = get_memory_info();
-    return info;
+  public void update_devices(Dictionary<string, dynamic> devices) {
+    devices["mb"] = get_mb_info();
+    devices["cpus"] = get_cpu_info_list();
+    devices["hdds"] = get_hdd_info_list();
+    devices["smart"] = get_smart_report();
+    devices["gpus"] = get_gpu_info_list();
+    devices["memory"] = get_memory_info();
   }
 
   ~CPUID() {

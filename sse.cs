@@ -126,7 +126,7 @@ public class SSE {
   }
 
   public void set_zone_color(int zone, int r, int g, int b) {
-    zone = Math.Min(zone, 2);
+    zone = (int) Tools.clamp(zone, 0, 2);
     r >>= 5;
     g >>= 5;
     b >>= 5;

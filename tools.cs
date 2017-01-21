@@ -16,6 +16,24 @@ public class Logger {
 }
 
 public static class Tools {
+  public static float lerp(float v0, float v1, float t) {
+    return (1 - t) * v0 + t * v1;
+  }
+
+  public static float clamp(float x, float x_min, float x_max) {
+    if (x < x_min) {
+      return x_min;
+    }
+    if (x > x_max) {
+      return x_max;
+    }
+    return x;
+  }
+
+  public static float remap(float x, float x_min, float x_max, float y_min, float y_max) {
+    return y_min + (y_max - y_min) * ((x - x_min) / (x_max - x_min));
+  }
+
   public static bool one_instance() {
     return Process.GetProcessesByName(
       Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)

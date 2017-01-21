@@ -26,22 +26,18 @@ function main() {
     $("#smart").innerHTML = JSON.stringify(hw, undefined, 2);
   }
 
-  var client_data;
-
   var jbog = jbog_client.make();
 
-  jbog.on("client_data", function (data) {
-    if (client_data === undefined) {
-      client_data = data;
-    } else {
-      jbog.send_message("set_client_data", client_data);
-    }
-    jbog.repeat_message("get_monitor_data");
-    jbog.send_message("get_info_data");
-    jbog.send_message("get_smart_data");
-    jbog.on("monitor_data", update_monitor);
-    jbog.on("info_data", update_info);
-    jbog.on("smart_data", update_smart);
+  jbog.on("open", function (data) {
+    jbog.repeat_message("get_sensors");
+    jbog.send_message("get_devices");
+    jbog.on("sensors", update_monitor);
+    jbog.on("devices", update_info);
+
+    jbog.send_message("set_plugin_effect", {
+      "name": "monitor",
+      "data": 42
+    });
   });
 
   jbog.run("127.0.0.1", 8000);

@@ -1,1 +1,1 @@
-{"keyboard":{"name":"SSE","zones":[{"r":255,"g":0,"b":0},{"r":0,"g":0,"b":0},{"r":0,"g":0,"b":0},{"r":0,"g":0,"b":0}]}}
+{"led_keyboard":{"name":"SSE","zones":[{"r":63,"g":191,"b":0},{"r":0,"g":0,"b":0},{"r":0,"g":0,"b":0},{"r":0,"g":0,"b":0}]},"plugin_effects":{"monitor":{"name":"monitor","data":42}}}

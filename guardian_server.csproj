@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +56,7 @@
   <ItemGroup>
     <Compile Include="hardware.cs" />
     <Compile Include="sse.cs" />
+    <Compile Include="clevo.cs" />
     <Compile Include="cpuidsdk.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="tools.cs" />

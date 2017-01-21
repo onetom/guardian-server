@@ -11,17 +11,6 @@ using Newtonsoft.Json.Linq;
 
 namespace guardian_server {
 
-class Settings {
-  public string server_name { get; set; }
-  public string browser_path { get; set; }
-  public string ui_path { get; set; }
-  public List<string> plugins { get; set; }
-  public int port { get; set; }
-  public int monitor_interval { get; set; }
-  public int info_interval { get; set; }
-  public string keyboard { get; set; }
-}
-
 class Program {
   public static bool is_running;
   public static Logger log;
@@ -62,7 +51,6 @@ class Program {
     log.add("ok\n");
     log.add("settings.json: ");
     settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText("settings.json"));
-    Console.WriteLine(settings.port);
     log.add("ok\n");
     log.add("add_to_tray: ");
     add_to_tray();
