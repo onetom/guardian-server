@@ -18,15 +18,21 @@ public class RGB {
   public int b;
 }
 
+public class Monitor {
+  public int is_on;
+  public string sensor_type;
+  public float start_value;
+  public float end_value;
+  public RGB start_color;
+  public RGB end_color;
+}
+
 class Program {
   static bool is_running = true;
   static WebSocket ws;
   static public Dictionary<string, dynamic> sensors;
   static public Dictionary<string, dynamic> devices;
-  static RGB start_color;
-  static RGB stop_color;
-  static float start_temp;
-  static float stop_temp;
+  static Monitor monitor;
   static int zone;
 
   static void send_message(string tag, dynamic data) {
@@ -43,7 +49,42 @@ class Program {
     } else if (message.tag == "devices") {
       devices = message.data.ToObject<Dictionary<string, dynamic>>();
     } else if (message.tag == "set_plugin_effect") {
+      string name = message.data.name;
+      dynamic data = message.data.data;
+      if (name == "monitor_0") {
+        zone = 0;
+        monitor = data.ToObject<Monitor>();
+      } else if (name == "monitor_1") {
+        zone = 1;
+        monitor = data.ToObject<Monitor>();
+      } else if (name == "monitor_2") {
+        zone = 2;
+        monitor = data.ToObject<Monitor>();
+      } else if (name == "monitor_3") {
+        zone = 3;
+        monitor = data.ToObject<Monitor>();
+      }
     }
+  }
+
+  static void monitor_effect() {
+    float value = 0;
+    if (monitor.sensor_type == "cpu_temp") {
+      value = sensors["cpus"][0]["temps"][0]["value"];
+    } else if (monitor.sensor_type == "cpu_load") {
+      value = sensors["cpus"][0]["loads"][0]["value"];
+    }
+    value = Tools.clamp(value, monitor.start_value, monitor.end_value);
+    value = Tools.remap(value, monitor.start_value, monitor.end_value, 0, 1);
+    int r = (int) Tools.lerp(monitor.start_color.r, monitor.end_color.r, value);
+    int g = (int) Tools.lerp(monitor.start_color.g, monitor.end_color.g, value);
+    int b = (int) Tools.lerp(monitor.start_color.b, monitor.end_color.b, value);
+    var j = new JObject();
+    j.Add("zone", zone);
+    j.Add("r", r);
+    j.Add("g", g);
+    j.Add("b", b);
+    send_message("set_keyboard_color", j);
   }
 
   static void Main(string[] args) {
@@ -53,25 +94,9 @@ class Program {
     ws.OnClose += (sender, e) => is_running = false;
     ws.Connect();
     send_message("get_devices", 0);
-    start_color = new RGB { r = 0, g = 255, b = 0 };
-    stop_color = new RGB { r = 255, g = 0, b = 0 };
-    start_temp = 40;
-    stop_temp = 60;
-    zone = 0;
     while (is_running) {
-      if (sensors != null) {
-        float temp = sensors["cpus"][0]["temps"]["Package"];
-        temp = Tools.clamp(temp, start_temp, stop_temp);
-        temp = Tools.remap(temp, start_temp, stop_temp, 0, 1);
-        int r = (int) Tools.lerp(start_color.r, stop_color.r, temp);
-        int g = (int) Tools.lerp(start_color.g, stop_color.g, temp);
-        int b = (int) Tools.lerp(start_color.b, stop_color.b, temp);
-        var j = new JObject();
-        j.Add("zone", zone);
-        j.Add("r", r);
-        j.Add("g", g);
-        j.Add("b", b);
-        send_message("set_keyboard_color", j);
+      if (sensors != null && monitor != null && monitor.is_on != 0) {
+        monitor_effect();
       }
       send_message("get_sensors", 0);
       Thread.Sleep(1000);

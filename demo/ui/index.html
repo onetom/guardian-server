@@ -35,8 +35,15 @@ function main() {
     jbog.on("devices", update_info);
 
     jbog.send_message("set_plugin_effect", {
-      "name": "monitor",
-      "data": 42
+      name: "monitor_0",
+      data: {
+        is_on: 1,
+        sensor_type: "cpu_temp",
+        start_value: 20,
+        end_value: 60,
+        start_color: { r: 0, g: 255, b: 0 },
+        end_color: { r: 255, g: 0, b: 0 }
+      }
     });
   });
 

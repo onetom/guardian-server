@@ -5,5 +5,5 @@ CPUID: ok
 hardware.json: ok
 led_keyboard: SSE
 plugin: monitor_plugin.exe
-connection: 127.0.0.1:52201
-server stopped
+connection: 127.0.0.1:53960
+connection: 127.0.0.1:53962

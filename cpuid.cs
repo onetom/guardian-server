@@ -2,43 +2,48 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
+public class Data {
+  public string name;
+  public double value;
+}
+
 public class MB_sensors {
   public string name;
-  public Dictionary<string, float> fans;
-  public Dictionary<string, float> temps;
-  public Dictionary<string, float> volts;
+  public List<Data> fans;
+  public List<Data> temps;
+  public List<Data> volts;
 }
 
 public class CPU_sensors {
   public string name;
-  public Dictionary<string, float> loads;
-  public Dictionary<string, float> temps;
-  public Dictionary<string, float> volts;
+  public List<Data> loads;
+  public List<Data> temps;
+  public List<Data> volts;
 }
 
 public class HDD_sensors {
   public string name;
-  public Dictionary<string, float> loads;
-  public Dictionary<string, float> temps;
+  public List<Data> loads;
+  public List<Data> temps;
 }
 
 public class GPU_sensors {
   public string name;
-  public Dictionary<string, float> fans;
-  public Dictionary<string, float> loads;
-  public Dictionary<string, float> temps;
+  public List<Data> fans;
+  public List<Data> loads;
+  public List<Data> temps;
 }
 
 public class Memory_sensors {
-  public float free;
-  public float total;
+  public double free;
+  public double total;
 }
 
 public class CPU_info {
   public string name;
   public string code_name;
-  public float tdp;
-  public float stock_clock;
+  public double tdp;
+  public double stock_clock;
 }
 
 public class MB_info {
@@ -51,8 +56,8 @@ public class MB_info {
 }
 
 public class HDD_info {
-  public float total;
-  public float free;
+  public double total;
+  public double free;
   public string fs;
   public string letter;
   public string volume;
@@ -61,15 +66,15 @@ public class HDD_info {
 public class GPU_info {
   public string name;
   public string code_name;
-  public float clock;
-  public float stock_clock;
-  public float memory_size;
+  public double clock;
+  public double stock_clock;
+  public double memory_size;
 }
 
 public class Memory_info {
   public string type;
-  public float size;
-  public float clock;
+  public double size;
+  public double clock;
 }
 
 public class Attribute {
@@ -186,7 +191,7 @@ class CPUID {
       ref extended_error_code);
   }
 
-  public Dictionary<string, float> get_sensor_list(int device_index, int sensor_class) {
+  public List<Data> get_sensor_list(int device_index, int sensor_class) {
     int sensor_index;
     int NbSensors;
     bool result;
@@ -196,7 +201,7 @@ class CPUID {
     float fValue = 0;
     float fMinValue = 0;
     float fMaxValue = 0;
-    var sensors = new Dictionary<string, float>();
+    var sensors = new List<Data>();
     NbSensors = pSDK.GetNumberOfSensors(device_index, sensor_class);
     for (sensor_index = 0; sensor_index < NbSensors; sensor_index += 1) {
       result = pSDK.GetSensorInfos(device_index,
@@ -209,7 +214,10 @@ class CPUID {
         ref fMinValue,
         ref fMaxValue);
       if (result == true) {
-        sensors[sensorname] = (float) Math.Round(fValue, 2);
+        var data = new Data();
+        data.name = sensorname;
+        data.value = Math.Round(fValue, 2);
+        sensors.Add(data);
       }
     }
     return sensors;
