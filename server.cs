@@ -33,10 +33,7 @@ public class Service : WebSocketBehavior {
   Server server;
 
   void send_message(string tag, dynamic data) {
-    var message = new Message();
-    message.tag = tag;
-    message.data = data;
-    Send(JsonConvert.SerializeObject(message));
+    Send(server.make_message(tag, data));
   }
 
   protected override void OnOpen() {
@@ -49,11 +46,8 @@ public class Service : WebSocketBehavior {
       send_message("sensors", server.sensors);
     } else if (message.tag == "get_devices") {
       send_message("devices", server.devices);
-    } else if (message.tag == "set_plugin_effect") {
-      Sessions.Broadcast(e.Data);
-      server.hw.set_plugin_effect(message.data);
-    } else if (server.fifo.Count < 1024) {
-      server.fifo.Enqueue(message);
+    } else if (server.fifo_in.Count < 1024) {
+      server.fifo_in.Enqueue(message);
     }
   }
 
@@ -70,31 +64,49 @@ public class Server {
   Stopwatch devices_timer;
   public Hardware hw;
   WebSocketServer wssv { get; set; }
-  public ConcurrentQueue<Message> fifo;
+  public ConcurrentQueue<Message> fifo_in;
+  public ConcurrentQueue<string> fifo_out;
+
+  public string make_message(string tag, dynamic data) {
+    var message = new Message();
+    message.tag = tag;
+    message.data = data;
+    return JsonConvert.SerializeObject(message);
+  }
 
   void update() {
     if (sensors_timer.ElapsedMilliseconds > Program.settings.sensors_interval) {
-      update_sensors();
       sensors_timer.Restart();
+      update_sensors();
     }
     if (devices_timer.ElapsedMilliseconds > (1000 * 60 * Program.settings.devices_interval)) {
-      update_devices();
       devices_timer.Restart();
+      update_devices();
     }
   }
 
-  void run_plugins() {
+  void start_plugins() {
     foreach (string file in Program.settings.plugins) {
       Program.log.add("plugin: " + file + "\n");
       Tools.run_process(file, "");
     }
   }
 
+  public void send_plugin_message(string tag, dynamic data) {
+    fifo_out.Enqueue(make_message(tag, data));
+  }
+
   void process_messages() {
-    Message message;
-    while (fifo.TryDequeue(out message)) {
-      if (message.tag == "set_keyboard_color" && Program.settings.led_keyboard != "none") {
-        hw.set_keyboard_color(message.data);
+    Message m_in;
+    string m_out;
+    while (fifo_in.TryDequeue(out m_in)) {
+      if (m_in.tag == "set_keyboard_zones") {
+        hw.led_keyboard.set_keyboard_zones(m_in.data);
+      }
+    }
+    if (wssv.WebSocketServices["/"].Sessions.Count != 0) {
+      while (fifo_out.TryDequeue(out m_out)) {
+        wssv.WebSocketServices["/"].Sessions.Broadcast(m_out);
       }
     }
   }
@@ -102,7 +114,7 @@ public class Server {
   public void run() {
     wssv.AddWebSocketService<Service>("/", () => new Service(this));
     wssv.Start();
-    run_plugins();
+    start_plugins();
     while (Program.is_running) {
       update();
       process_messages();
@@ -111,21 +123,24 @@ public class Server {
     wssv.Stop();
   }
 
-  private void on_exit(object sender, EventArgs e) {
-    hw.save();
-  }
-
   void update_sensors() {
     cpuid.update_sensors(sensors);
+    hw.update_sensors(sensors);
   }
 
   void update_devices() {
     cpuid.update_devices(devices);
-    hw.update(devices);
+    hw.update_devices(devices);
+  }
+
+  void on_exit(object sender, EventArgs e) {
+    hw.save();
   }
 
   public Server() {
     Application.ApplicationExit += new EventHandler(this.on_exit);
+    fifo_in = new ConcurrentQueue<Message>();
+    fifo_out = new ConcurrentQueue<string>();
     sensors = new Dictionary<string, dynamic>();
     devices = new Dictionary<string, dynamic>();
     Program.log.add("CPUID: ");
@@ -134,12 +149,11 @@ public class Server {
       Application.Exit();
     }
     Program.log.add("ok\n");
-    hw = new Hardware();
+    hw = new Hardware(this);
     update_sensors();
     update_devices();
     sensors_timer = Stopwatch.StartNew();
     devices_timer = Stopwatch.StartNew();
-    fifo = new ConcurrentQueue<Message>();
     wssv = new WebSocketServer(Program.settings.port);
   }
 }

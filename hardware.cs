@@ -6,84 +6,127 @@ using Newtonsoft.Json.Linq;
 
 namespace guardian_server {
 
-public class RGB {
-  public int r = 0;
-  public int g = 0;
-  public int b = 0;
-}
-
 public class Led_keyboard {
-  public string name = "none";
-  public RGB[] zones = new RGB[4];
-  public Led_keyboard() {
-    for (int i = 0; i < zones.Length; i += 1) {
-      zones[i] = new RGB();
+  Hardware hw;
+  dynamic kb_server;
+  public Dictionary<string, dynamic> zones;
+
+  void set_zone_color(string zone, dynamic effect) {
+    int z = int.Parse(zone) - 1;
+    int r = effect["color"][0];
+    int g = effect["color"][1];
+    int b = effect["color"][2];
+    kb_server.set_zone_color(z, r, g, b);
+  }
+
+  void set_static_color(dynamic effect) {
+    string zone = effect["zone"];
+    if (zone == "all") {
+      set_zone_color("1", effect);
+      set_zone_color("2", effect);
+      set_zone_color("3", effect);
+      set_zone_color("4", effect);
+    } else {
+      set_zone_color(zone, effect);
     }
   }
-}
 
-public class Hardware_state {
-  public Led_keyboard led_keyboard;
-  public Dictionary<string, dynamic> plugin_effects;
-}
+  public void reset_zone(string zone) {
+    hw.server.send_plugin_message("reset_keyboard_effect", zones[zone]);
+    if (zone == "all") {
+      set_default_effect("1");
+      set_default_effect("2");
+      set_default_effect("3");
+      set_default_effect("4");
+    }
+    set_default_effect(zone);
+    set_static_color(zones[zone]);
+  }
 
-public class Hardware {
-  public dynamic led_keyboard;
-  public Hardware_state state;
-
-  public void set_keyboard_color(dynamic data) {
-    int zone = data.zone;
-    zone = (int) Tools.clamp(zone, 0, state.led_keyboard.zones.Length - 1);
-    int r = data.r;
-    int g = data.g;
-    int b = data.b;
-    state.led_keyboard.zones[zone].r = r;
-    state.led_keyboard.zones[zone].g = g;
-    state.led_keyboard.zones[zone].b = b;
-    led_keyboard.set_zone_color(zone, r, g, b);
+  public void set_keyboard_zones(dynamic effect) {
+    string name = effect["name"];
+    string zone = effect["zone"];
+    if (name == "static_color_raw") {
+      set_static_color(effect);
+      return;
+    }
+    if (name == "off" || zones[zone]["name"] != "static_color") {
+      reset_zone(zone);
+    }
+    if (name == "static_color") {
+      set_static_color(effect);
+    } else if (name != "off") {
+      hw.server.send_plugin_message("set_keyboard_effect", effect);
+    }
+    zones[zone] = effect;
   }
 
   public void restore() {
-    int r;
-    int g;
-    int b;
-    for (int i = 0; i < state.led_keyboard.zones.Length - 1; i += 1) {
-      r = state.led_keyboard.zones[i].r;
-      g = state.led_keyboard.zones[i].g;
-      b = state.led_keyboard.zones[i].b;
-      led_keyboard.set_zone_color(i, r, g, b);
+    if (zones["all"]["name"] != "off") {
+      set_keyboard_zones(zones["all"]);
+      return;
     }
+    set_keyboard_zones(zones["1"]);
+    set_keyboard_zones(zones["2"]);
+    set_keyboard_zones(zones["3"]);
+    set_keyboard_zones(zones["4"]);
   }
 
+  public void update_sensors(Dictionary<string, dynamic> sensors) {
+    sensors["led_keyboard"] = zones;
+  }
+
+  public void set_default_effect(string zone) {
+    var effect = new Dictionary<string, dynamic>();
+    effect["name"] = "static_color";
+    effect["zone"] = zone;
+    effect["color"] = new List<int> { 0, 0, 0 };
+    zones[zone] = effect;
+  }
+
+  public Led_keyboard(Hardware h) {
+    hw = h;
+    zones = hw.state["led_keyboard"].ToObject<Dictionary<string, dynamic>>();
+    Program.log.add("led_keyboard: ");
+    if (Program.settings.led_keyboard == "SSE") {
+      kb_server = new SSE();
+    } else if (Program.settings.led_keyboard == "Clevo") {
+      kb_server = new Clevo();
+    }
+    Program.log.add(Program.settings.led_keyboard + "\n");
+  }
+}
+
+public class Hardware {
+  public Server server;
+  public Dictionary<string, dynamic> state;
+  public Led_keyboard led_keyboard;
+
   public void save() {
+    state["led_keyboard"] = led_keyboard.zones;
     File.WriteAllText("hardware.json", JsonConvert.SerializeObject(state));
   }
 
-  public void update(Dictionary<string, dynamic> devices) {
-    devices["led_keyboard"] = state.led_keyboard;
-    devices["plugin_effects"] = state.plugin_effects;
+  public void update_sensors(Dictionary<string, dynamic> sensors) {
+    led_keyboard.update_sensors(sensors);
   }
 
-  public void set_plugin_effect(dynamic data) {
-    string name = data.name;
-    state.plugin_effects[name] = data;
+  public void update_devices(Dictionary<string, dynamic> devices) {
   }
 
-  public Hardware() {    
+  public void restore() {
+    led_keyboard.restore();
+  }
+
+  public Hardware(Server s) {
+    server = s;
+    state = new Dictionary<string, dynamic>();
     Program.log.add("hardware.json: ");
-    state = JsonConvert.DeserializeObject<Hardware_state>(File.ReadAllText("hardware.json"));
+    state = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(File.ReadAllText("hardware.json"));
     Program.log.add("ok\n");
-    Program.log.add("led_keyboard: ");
-    if (Program.settings.led_keyboard == "SSE") {
-      led_keyboard = new SSE();     
-    } else if (Program.settings.led_keyboard == "Clevo") {
-      led_keyboard = new Clevo();
-    }
-    state.led_keyboard.name = Program.settings.led_keyboard;
-    Program.log.add(state.led_keyboard.name + "\n");
+    led_keyboard = new Led_keyboard(this);
     restore();
   }
-
 }
 
 }

@@ -31,6 +31,7 @@ public static class Tools {
   }
 
   public static float remap(float x, float x_min, float x_max, float y_min, float y_max) {
+    x = clamp(x, x_min, x_max);
     return y_min + (y_max - y_min) * ((x - x_min) / (x_max - x_min));
   }
 

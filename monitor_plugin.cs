@@ -12,28 +12,19 @@ public class Message {
   public dynamic data { get; set; }
 }
 
-public class RGB {
-  public int r;
-  public int g;
-  public int b;
-}
-
-public class Monitor {
+public class Effect {
+  public string name;
+  public string zone;
+  public List<int> color;
+  public List<int> end_color;
   public int is_on;
-  public string sensor_type;
-  public float start_value;
-  public float end_value;
-  public RGB start_color;
-  public RGB end_color;
 }
 
 class Program {
   static bool is_running = true;
   static WebSocket ws;
   static public Dictionary<string, dynamic> sensors;
-  static public Dictionary<string, dynamic> devices;
-  static Monitor monitor;
-  static int zone;
+  static public Dictionary<string, Effect> zones;
 
   static void send_message(string tag, dynamic data) {
     var message = new Message();
@@ -46,57 +37,88 @@ class Program {
     var message = JsonConvert.DeserializeObject<Message>(e.Data);
     if (message.tag == "sensors") {
       sensors = message.data.ToObject<Dictionary<string, dynamic>>();
-    } else if (message.tag == "devices") {
-      devices = message.data.ToObject<Dictionary<string, dynamic>>();
-    } else if (message.tag == "set_plugin_effect") {
-      dynamic data = message.data;
+    } else if (message.tag == "set_keyboard_effect" || message.tag == "reset_keyboard_effect") {
+      var data = message.data.ToObject<Effect>();
       string name = data.name;
-      if (name == "monitor_0") {
-        zone = 0;
-        monitor = data.ToObject<Monitor>();
-      } else if (name == "monitor_1") {
-        zone = 1;
-        monitor = data.ToObject<Monitor>();
-      } else if (name == "monitor_2") {
-        zone = 2;
-        monitor = data.ToObject<Monitor>();
-      } else if (name == "monitor_3") {
-        zone = 3;
-        monitor = data.ToObject<Monitor>();
+      if (name == "cpu_temp" || name == "cpu_load" || name == "gpu_temp" || name == "gpu_load") {
+        zones[data.zone] = data;
+        zones[data.zone].is_on = 1;
+        if (message.tag == "reset_keyboard_effect") {
+          zones[data.zone].is_on = 0;
+        }
       }
     }
   }
 
-  static void monitor_effect() {
-    float value = 0;
-    if (monitor.sensor_type == "cpu_temp") {
-      value = sensors["cpus"][0]["temps"][0]["value"];
-    } else if (monitor.sensor_type == "cpu_load") {
-      value = sensors["cpus"][0]["loads"][0]["value"];
-    }
-    value = Tools.clamp(value, monitor.start_value, monitor.end_value);
-    value = Tools.remap(value, monitor.start_value, monitor.end_value, 0, 1);
-    int r = (int) Tools.lerp(monitor.start_color.r, monitor.end_color.r, value);
-    int g = (int) Tools.lerp(monitor.start_color.g, monitor.end_color.g, value);
-    int b = (int) Tools.lerp(monitor.start_color.b, monitor.end_color.b, value);
+  static void update_monitor(Effect e, float x) {
+    int r = (int) Tools.lerp(e.color[0], e.end_color[0], x);
+    int g = (int) Tools.lerp(e.color[1], e.end_color[1], x);
+    int b = (int) Tools.lerp(e.color[2], e.end_color[2], x);
     var j = new JObject();
-    j.Add("zone", zone);
-    j.Add("r", r);
-    j.Add("g", g);
-    j.Add("b", b);
-    send_message("set_keyboard_color", j);
+    var color = new JArray();
+    j.Add("name", "static_color_raw");
+    j.Add("zone", e.zone);
+    color.Add(r);
+    color.Add(g);
+    color.Add(b);
+    j.Add("color", color);
+    send_message("set_keyboard_zones", j);
+  }
+
+  static float get_sensor_by_path(string section, string sensor_type, string sensor_name) {
+    List<dynamic> section_list = sensors[section].ToObject<List<dynamic>>();
+    if (section_list.Count == 0) {
+      return 0;
+    }
+    List<dynamic> sensor_list = section_list[0][sensor_type].ToObject<List<dynamic>>();
+    if (sensor_list.Count == 0) {
+      return 0;
+    }
+    foreach (var x in sensor_list) {
+      if (x["name"] == sensor_name) {
+        return x["value"];
+      }
+    }
+    return sensor_list[0]["value"];
+  }
+
+  static float get_sensor(Effect e) {
+    float x = 0;
+    if (e.name == "cpu_temp") {
+      x = get_sensor_by_path("cpus", "temps", "Package");
+      x = Tools.remap(x, 40, 70, 0, 1);
+    } else if (e.name == "cpu_load") {
+      x = get_sensor_by_path("cpus", "loads", "UC");
+      x = Tools.remap(x, 0, 100, 0, 1);
+    } else if (e.name == "gpu_temp") {
+      x = get_sensor_by_path("gpus", "temps", "Package");
+      x = Tools.remap(x, 40, 70, 0, 1);
+    } else if (e.name == "gpu_load") {
+      x = get_sensor_by_path("gpus", "loads", "UC");
+      x = Tools.remap(x, 0, 100, 0, 1);
+    }
+    return x;
+  }
+
+  static void do_monitoring() {
+    foreach (var effect in zones.Values) {
+      if (effect.is_on != 0) {
+        update_monitor(effect, get_sensor(effect));
+      }
+    }
   }
 
   static void Main(string[] args) {
+    zones = new Dictionary<string, Effect>();
     ws = new WebSocket("ws://127.0.0.1:8000");
     ws.OnMessage += on_message;
     ws.OnError += (sender, e) => is_running = false;
     ws.OnClose += (sender, e) => is_running = false;
     ws.Connect();
-    send_message("get_devices", 0);
+    send_message("get_sensors", 0);
     while (is_running) {
-      if (sensors != null && monitor != null && monitor.is_on != 0) {
-        monitor_effect();
+      if (sensors != null) {
+        do_monitoring();
       }
       send_message("get_sensors", 0);
       Thread.Sleep(1000);

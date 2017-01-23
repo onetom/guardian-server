@@ -33,25 +33,20 @@ function main() {
     jbog.send_message("get_devices");
     jbog.on("sensors", update_monitor);
     jbog.on("devices", update_info);
-
 /*
-    jbog.send_message("set_keyboard_color", {
-        zone: 0,
-        r: 255,
-        g: 0,
-        b: 255
-      }
-    );
-
-    jbog.send_message("set_plugin_effect", {
-      name: "monitor_0",
-      is_on: 0,
-      sensor_type: "cpu_temp",
-      start_value: 20,
-      end_value: 60,
-      start_color: { r: 0, g: 255, b: 0 },
-      end_color: { r: 255, g: 0, b: 0 }
+    jbog.send_message("set_keyboard_zones", {
+      name: "static_color",
+      zone: "all",
+      color: [255, 0, 0]
     });
+
+    jbog.send_message("set_keyboard_zones", {
+      name: "cpu_temp",
+      zone: "2",
+      color: [0, 255, 0],
+      end_color: [255, 0, 10]
+    });
+
 */
   });
 
