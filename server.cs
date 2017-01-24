@@ -97,16 +97,17 @@ public class Server {
   }
 
   void process_messages() {
-    Message m_in;
-    string m_out;
-    while (fifo_in.TryDequeue(out m_in)) {
-      if (m_in.tag == "set_keyboard_zones") {
-        hw.led_keyboard.set_keyboard_zones(m_in.data);
+    Message msg_in;
+    string msg_out;
+    while (fifo_in.TryDequeue(out msg_in)) {
+      if (msg_in.tag == "set_keyboard_zones") {
+        hw.led_keyboard.set_keyboard_zones(msg_in.data);
       }
     }
-    if (wssv.WebSocketServices["/"].Sessions.Count != 0) {
-      while (fifo_out.TryDequeue(out m_out)) {
-        wssv.WebSocketServices["/"].Sessions.Broadcast(m_out);
+    var service = wssv.WebSocketServices["/"];
+    if (service.Sessions.Count >= Program.settings.plugins.Count) {
+      while (fifo_out.TryDequeue(out msg_out)) {
+        service.Sessions.Broadcast(msg_out);
       }
     }
   }

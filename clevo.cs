@@ -27,8 +27,11 @@ public class Clevo
     this.bEnableSave = true;
   }
 
+  public int get_number_of_zones() {
+    return 4;
+  }
+
   public void set_zone_color(int zone, int r, int g, int b) {
-    zone = (int) Tools.clamp(zone, 0, 3);
     SetColor(r, g, b, zone + 1);
   }
 

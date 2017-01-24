@@ -37,15 +37,16 @@ class Program {
     var message = JsonConvert.DeserializeObject<Message>(e.Data);
     if (message.tag == "sensors") {
       sensors = message.data.ToObject<Dictionary<string, dynamic>>();
-    } else if (message.tag == "set_keyboard_effect" || message.tag == "reset_keyboard_effect") {
-      var data = message.data.ToObject<Effect>();
-      string name = data.name;
+    } else if (message.tag == "reset_keyboard_effect") {
+      string zone = message.data.zone;
+      zones[zone] = new Effect();
+      zones[zone].is_on = 0;
+    } else if (message.tag == "set_keyboard_effect") {
+      string name = message.data.name;
       if (name == "cpu_temp" || name == "cpu_load" || name == "gpu_temp" || name == "gpu_load") {
+        Effect data = message.data.ToObject<Effect>();
         zones[data.zone] = data;
         zones[data.zone].is_on = 1;
-        if (message.tag == "reset_keyboard_effect") {
-          zones[data.zone].is_on = 0;
-        }
       }
     }
   }

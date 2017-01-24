@@ -6,16 +6,25 @@ using Newtonsoft.Json.Linq;
 
 namespace guardian_server {
 
+public class Keyboard_info {
+  public string name;
+  public int number_of_zones;
+}
+
 public class Led_keyboard {
   Hardware hw;
   dynamic kb_server;
   public Dictionary<string, dynamic> zones;
+  public Keyboard_info kb_info;
 
   void set_zone_color(string zone, dynamic effect) {
     int z = int.Parse(zone) - 1;
     int r = effect["color"][0];
     int g = effect["color"][1];
     int b = effect["color"][2];
+    if (z >= kb_server.get_number_of_zones()) {
+      return;
+    }
     kb_server.set_zone_color(z, r, g, b);
   }
 
@@ -76,6 +85,10 @@ public class Led_keyboard {
     sensors["led_keyboard"] = zones;
   }
 
+  public void update_devices(Dictionary<string, dynamic> devices) {
+    devices["led_keyboard"] = kb_info;
+  }
+
   public void set_default_effect(string zone) {
     var effect = new Dictionary<string, dynamic>();
     effect["name"] = "static_color";
@@ -94,6 +107,9 @@ public class Led_keyboard {
       kb_server = new Clevo();
     }
     Program.log.add(Program.settings.led_keyboard + "\n");
+    kb_info = new Keyboard_info();
+    kb_info.name = Program.settings.led_keyboard;
+    kb_info.number_of_zones = kb_server.get_number_of_zones();
   }
 }
 
@@ -112,6 +128,7 @@ public class Hardware {
   }
 
   public void update_devices(Dictionary<string, dynamic> devices) {
+    led_keyboard.update_devices(devices);
   }
 
   public void restore() {

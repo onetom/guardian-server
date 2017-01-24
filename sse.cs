@@ -26,7 +26,7 @@ public class SSE {
     }
   }
 
-  string http_post_raw(string command, string data) {
+  string http_post(string command, string data) {
     string url = "http://" + address + command;
     try {
       var client = new WebClient();
@@ -35,13 +35,6 @@ public class SSE {
     } catch (WebException ex) {
       return new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
     }
-  }
-
-  void http_post(string command, string data) {
-    Console.WriteLine("command: " + command);
-    Console.WriteLine("data: " + data);
-    Console.WriteLine("SSE answer:");
-    Console.WriteLine(http_post_raw(command, data));
   }
 
   void remove_game() {
@@ -115,22 +108,25 @@ public class SSE {
     bind_event(event_name + i, zone, j);
   }
 
-  public void send_event(string name, int value) {
+  public string send_event(string name, int value) {
     var j = new JObject();
     var data = new JObject();
     j.Add("game", server_name);
     j.Add("event", name);
     data.Add("value", value);
     j.Add("data", data);
-    http_post("/game_event", j.ToString());
+    return http_post("/game_event", j.ToString());
+  }
+
+  public int get_number_of_zones() {
+    return 3;
   }
 
   public void set_zone_color(int zone, int r, int g, int b) {
-    zone = (int) Tools.clamp(zone, 0, 2);
     r >>= 5;
     g >>= 5;
     b >>= 5;
-    send_event(event_name + zone, r | (g << 3) | (b << 6));
+    Console.WriteLine(send_event(event_name + zone, r | (g << 3) | (b << 6)));
   }
 
   public void send_ping() {
