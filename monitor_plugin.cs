@@ -57,7 +57,7 @@ class Program {
     int b = (int) Tools.lerp(e.color[2], e.end_color[2], x);
     var j = new JObject();
     var color = new JArray();
-    j.Add("name", "static_color_raw");
+    j.Add("name", "static_color_from_plugin");
     j.Add("zone", e.zone);
     color.Add(r);
     color.Add(g);
