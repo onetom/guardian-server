@@ -90,6 +90,9 @@ public class Server {
       Program.log.add("plugin: " + file + "\n");
       Tools.run_process(file, "");
     }
+    while (wssv.WebSocketServices["/"].Sessions.Count < Program.settings.plugins.Count) {
+      Thread.Sleep(10);
+    }
   }
 
   public void send_plugin_message(string tag, dynamic data) {
@@ -104,11 +107,8 @@ public class Server {
         hw.led_keyboard.set_keyboard_zones(msg_in.data);
       }
     }
-    var service = wssv.WebSocketServices["/"];
-    if (service.Sessions.Count >= Program.settings.plugins.Count) {
-      while (fifo_out.TryDequeue(out msg_out)) {
-        service.Sessions.Broadcast(msg_out);
-      }
+    while (fifo_out.TryDequeue(out msg_out)) {
+      wssv.WebSocketServices["/"].Sessions.Broadcast(msg_out);
     }
   }
 
@@ -119,7 +119,7 @@ public class Server {
     while (Program.is_running) {
       update();
       process_messages();
-      Thread.Sleep(100);
+      Thread.Sleep(10);
     }
     wssv.Stop();
   }

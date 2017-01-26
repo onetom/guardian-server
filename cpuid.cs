@@ -19,6 +19,8 @@ public class CPU_sensors {
   public List<Data> loads;
   public List<Data> temps;
   public List<Data> volts;
+  public List<Data> clocks;
+  public List<Data> watts;
 }
 
 public class HDD_sensors {
@@ -256,10 +258,12 @@ class CPUID {
         cpu.loads = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
         cpu.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
         cpu.volts = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_VOLTAGE);
+        cpu.clocks = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_CLOCK_SPEED);
+        cpu.watts = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_POWER);
         cpus.Add(cpu);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_DRIVE) {
         var hdd = new HDD_sensors();
-        hdd.name = devicename;
+        hdd.name = devicename.Trim();
         hdd.loads = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
         hdd.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
         hdds.Add(hdd);
@@ -288,7 +292,7 @@ class CPUID {
     var smart_list = new List<SMART_report>();
     for (int hdd_index = 0; hdd_index < pSDK.GetNumberOfHDD(); hdd_index += 1) {
       var smart = new SMART_report();
-      smart.name = pSDK.GetHDDName(hdd_index);
+      smart.name = pSDK.GetHDDName(hdd_index).Trim();
       smart.attributes = new List<Attribute>();
       for (int attrib_index = 0; attrib_index < pSDK.GetHDDNumberOfAttributes(hdd_index); attrib_index += 1) {
         bool res = pSDK.GetHDDAttribute(hdd_index, attrib_index, ref id, ref flags, ref value, ref worst, data);
