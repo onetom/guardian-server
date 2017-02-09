@@ -2,38 +2,38 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Data {
+public class Sensor {
   public string name;
   public double value;
 }
 
 public class MB_sensors {
   public string name;
-  public List<Data> fans;
-  public List<Data> temps;
-  public List<Data> volts;
+  public List<Sensor> fans;
+  public List<Sensor> temps;
+  public List<Sensor> volts;
 }
 
 public class CPU_sensors {
   public string name;
-  public List<Data> loads;
-  public List<Data> temps;
-  public List<Data> volts;
-  public List<Data> clocks;
-  public List<Data> watts;
+  public List<Sensor> loads;
+  public List<Sensor> temps;
+  public List<Sensor> volts;
+  public List<Sensor> clocks;
+  public List<Sensor> watts;
 }
 
 public class HDD_sensors {
   public string name;
-  public List<Data> loads;
-  public List<Data> temps;
+  public List<Sensor> loads;
+  public List<Sensor> temps;
 }
 
 public class GPU_sensors {
   public string name;
-  public List<Data> fans;
-  public List<Data> loads;
-  public List<Data> temps;
+  public List<Sensor> fans;
+  public List<Sensor> loads;
+  public List<Sensor> temps;
 }
 
 public class Memory_sensors {
@@ -193,7 +193,7 @@ class CPUID {
       ref extended_error_code);
   }
 
-  public List<Data> get_sensor_list(int device_index, int sensor_class) {
+  public List<Sensor> get_sensor_list(int device_index, int sensor_class) {
     int sensor_index;
     int NbSensors;
     bool result;
@@ -203,7 +203,7 @@ class CPUID {
     float fValue = 0;
     float fMinValue = 0;
     float fMaxValue = 0;
-    var sensors = new List<Data>();
+    var sensors = new List<Sensor>();
     NbSensors = pSDK.GetNumberOfSensors(device_index, sensor_class);
     for (sensor_index = 0; sensor_index < NbSensors; sensor_index += 1) {
       result = pSDK.GetSensorInfos(device_index,
@@ -216,7 +216,7 @@ class CPUID {
         ref fMinValue,
         ref fMaxValue);
       if (result == true) {
-        var data = new Data();
+        var data = new Sensor();
         data.name = sensorname;
         data.value = Math.Round(fValue, 2);
         sensors.Add(data);

@@ -55,8 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="hardware.cs" />
-    <Compile Include="sse.cs" />
-    <Compile Include="clevo.cs" />
+    <Compile Include="kb_sse.cs" />
+    <Compile Include="kb_clevo.cs" />
     <Compile Include="cpuidsdk.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="tools.cs" />
