@@ -285,13 +285,14 @@ namespace WebSocketSharp.Server
     internal void Add<TBehavior> (string path, Func<TBehavior> initializer)
       where TBehavior : WebSocketBehavior
     {
-      lock (_sync) {
-        path = HttpUtility.UrlDecode (path).TrimEndSlash ();
+      path = HttpUtility.UrlDecode (path).TrimEndSlash ();
 
+      lock (_sync) {
         WebSocketServiceHost host;
         if (_hosts.TryGetValue (path, out host)) {
           _logger.Error (
-            "A WebSocket service with the specified path already exists:\n  path: " + path);
+            "A WebSocket service with the specified path has already existed."
+          );
 
           return;
         }
@@ -310,29 +311,26 @@ namespace WebSocketSharp.Server
       }
     }
 
-    internal bool InternalTryGetServiceHost (string path, out WebSocketServiceHost host)
+    internal bool InternalTryGetServiceHost (
+      string path, out WebSocketServiceHost host
+    )
     {
-      bool ret;
-      lock (_sync) {
-        path = HttpUtility.UrlDecode (path).TrimEndSlash ();
-        ret = _hosts.TryGetValue (path, out host);
-      }
+      path = HttpUtility.UrlDecode (path).TrimEndSlash ();
 
-      if (!ret)
-        _logger.Error (
-          "A WebSocket service with the specified path isn't found:\n  path: " + path);
-
-      return ret;
+      lock (_sync)
+        return _hosts.TryGetValue (path, out host);
     }
 
     internal bool Remove (string path)
     {
+      path = HttpUtility.UrlDecode (path).TrimEndSlash ();
+
       WebSocketServiceHost host;
       lock (_sync) {
-        path = HttpUtility.UrlDecode (path).TrimEndSlash ();
         if (!_hosts.TryGetValue (path, out host)) {
           _logger.Error (
-            "A WebSocket service with the specified path isn't found:\n  path: " + path);
+            "A WebSocket service with the specified path could not be found."
+          );
 
           return false;
         }
@@ -341,7 +339,7 @@ namespace WebSocketSharp.Server
       }
 
       if (host.State == ServerState.Start)
-        host.Stop ((ushort) CloseStatusCode.Away, null);
+        host.Stop (1001, String.Empty);
 
       return true;
     }
@@ -353,6 +351,18 @@ namespace WebSocketSharp.Server
           host.Start ();
 
         _state = ServerState.Start;
+      }
+    }
+
+    internal void Stop (ushort code, string reason)
+    {
+      lock (_sync) {
+        _state = ServerState.ShuttingDown;
+
+        foreach (var host in _hosts.Values)
+          host.Stop (code, reason);
+
+        _state = ServerState.Stop;
       }
     }
 
@@ -583,28 +593,34 @@ namespace WebSocketSharp.Server
     }
 
     /// <summary>
-    /// Tries to get the WebSocket service host with the specified <paramref name="path"/>.
+    /// Tries to get the WebSocket service host with
+    /// the specified <paramref name="path"/>.
     /// </summary>
     /// <returns>
-    /// <c>true</c> if the service is successfully found; otherwise, <c>false</c>.
+    /// <c>true</c> if the service is successfully found;
+    /// otherwise, <c>false</c>.
     /// </returns>
     /// <param name="path">
-    /// A <see cref="string"/> that represents the absolute path to the service to find.
+    /// A <see cref="string"/> that represents the absolute path to
+    /// the service to find.
     /// </param>
     /// <param name="host">
-    /// When this method returns, a <see cref="WebSocketServiceHost"/> instance that
-    /// provides the access to the information in the service, or <see langword="null"/>
-    /// if it's not found. This parameter is passed uninitialized.
+    /// When this method returns, a <see cref="WebSocketServiceHost"/>
+    /// instance that provides the access to the information in
+    /// the service or <see langword="null"/> if it is not found.
     /// </param>
     public bool TryGetServiceHost (string path, out WebSocketServiceHost host)
     {
-      var msg = _state.CheckIfAvailable (false, true, false) ?? path.CheckIfValidServicePath ();
-      if (msg != null) {
-        _logger.Error (msg);
-        host = null;
+      host = null;
 
+      if (path == null || path.Length == 0)
         return false;
-      }
+
+      if (path[0] != '/')
+        return false;
+
+      if (path.IndexOfAny (new[] { '?', '#' }) > -1)
+        return false;
 
       return InternalTryGetServiceHost (path, out host);
     }

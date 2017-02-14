@@ -41,7 +41,15 @@ public class Service : WebSocketBehavior {
   }
 
   protected override void OnMessage(MessageEventArgs e) {
-    var message = JsonConvert.DeserializeObject<Message>(e.Data);
+    Message message;
+    if (!e.IsText) {
+      return;
+    }
+    try {
+      message = JsonConvert.DeserializeObject<Message>(e.Data);
+    } catch (JsonSerializationException) {
+      return;
+    }
     if (message.tag == "get_sensors") {
       send_message("sensors", server.sensors);
     } else if (message.tag == "get_devices") {
