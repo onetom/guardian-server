@@ -39,14 +39,15 @@ function main() {
       zone: "1",
       color: [255, 12, 0]
     });
-
+*/
     jbog.send_message("set_keyboard_zones", {
       name: "cpu_temp",
       zone: "1",
-      color: [0, 255, 0],
+      color: [0, 0, 0],
+      beg_color: [0, 255, 0],
       end_color: [255, 0, 0]
     });
-*/
+
   });
 
   jbog.run("127.0.0.1", 8000);

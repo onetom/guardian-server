@@ -16,6 +16,7 @@ public class Effect {
   public string name;
   public string zone;
   public List<int> color;
+  public List<int> beg_color;
   public List<int> end_color;
   public int is_on;
 }
@@ -52,17 +53,27 @@ class Program {
   }
 
   static void update_monitor(Effect e, float x) {
-    int r = (int) Tools.lerp(e.color[0], e.end_color[0], x);
-    int g = (int) Tools.lerp(e.color[1], e.end_color[1], x);
-    int b = (int) Tools.lerp(e.color[2], e.end_color[2], x);
+    int r = (int) Tools.lerp(e.beg_color[0], e.end_color[0], x);
+    int g = (int) Tools.lerp(e.beg_color[1], e.end_color[1], x);
+    int b = (int) Tools.lerp(e.beg_color[2], e.end_color[2], x);
     var j = new JObject();
-    var color = new JArray();
     j.Add("name", "static_color_from_plugin");
     j.Add("zone", e.zone);
+    var color = new JArray();
     color.Add(r);
     color.Add(g);
     color.Add(b);
     j.Add("color", color);
+    var beg_color = new JArray();
+    beg_color.Add(e.beg_color[0]);
+    beg_color.Add(e.beg_color[1]);
+    beg_color.Add(e.beg_color[2]);
+    j.Add("beg_color", color);
+    var end_color = new JArray();
+    end_color.Add(e.end_color[0]);
+    end_color.Add(e.end_color[1]);
+    end_color.Add(e.end_color[2]);
+    j.Add("end_color", color);
     send_message("set_keyboard_zones", j);
   }
 

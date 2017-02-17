@@ -78,6 +78,8 @@ public class Led_keyboard {
     effect["name"] = "static_color";
     effect["zone"] = zone;
     effect["color"] = new List<int> { 0, 0, 0 };
+    effect["beg_color"] = new List<int> { 0, 0, 0 };
+    effect["end_color"] = new List<int> { 0, 0, 0 };
     zones[zone] = effect;
   }
 
