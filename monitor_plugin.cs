@@ -64,16 +64,6 @@ class Program {
     color.Add(g);
     color.Add(b);
     j.Add("color", color);
-    var beg_color = new JArray();
-    beg_color.Add(e.beg_color[0]);
-    beg_color.Add(e.beg_color[1]);
-    beg_color.Add(e.beg_color[2]);
-    j.Add("beg_color", color);
-    var end_color = new JArray();
-    end_color.Add(e.end_color[0]);
-    end_color.Add(e.end_color[1]);
-    end_color.Add(e.end_color[2]);
-    j.Add("end_color", color);
     send_message("set_keyboard_zones", j);
   }
 

@@ -50,8 +50,10 @@ public class Led_keyboard {
   public void set_keyboard_zones(dynamic effect) {
     string name = effect["name"];
     string zone = effect["zone"];
-    if (name == "static_color_from_plugin" && zones[zone]["name"] != "static_color") {
-      set_static_color(effect);
+    if (name == "static_color_from_plugin") {
+      if (zones[zone]["name"] != "static_color") {
+        set_static_color(effect);
+      }
       return;
     }
     if (name == "off" || zones[zone]["name"] != "static_color") {
