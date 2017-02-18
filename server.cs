@@ -50,9 +50,7 @@ public class Service : WebSocketBehavior {
     } catch (JsonSerializationException) {
       return;
     }
-    if (message.tag == "get_sensors") {
-      send_message("sensors", server.sensors);
-    } else if (message.tag == "get_devices") {
+    if (message.tag == "get_devices") {
       send_message("devices", server.devices);
     } else if (server.fifo_in.Count < 1024) {
       server.fifo_in.Enqueue(message);
@@ -86,6 +84,7 @@ public class Server {
     if (sensors_timer.ElapsedMilliseconds > Program.settings.sensors_interval) {
       sensors_timer.Restart();
       update_sensors();
+      wssv.WebSocketServices["/"].Sessions.Broadcast(make_message("sensors", sensors));
     }
     if (devices_timer.ElapsedMilliseconds > (1000 * 60 * Program.settings.devices_interval)) {
       devices_timer.Restart();

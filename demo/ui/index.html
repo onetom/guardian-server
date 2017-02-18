@@ -29,7 +29,6 @@ function main() {
   var jbog = jbog_client.make();
 
   jbog.on("open", function (data) {
-    jbog.repeat_message("get_sensors");
     jbog.send_message("get_devices");
     jbog.on("sensors", update_monitor);
     jbog.on("devices", update_info);

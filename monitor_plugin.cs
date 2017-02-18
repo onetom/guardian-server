@@ -116,12 +116,10 @@ class Program {
     ws.OnError += (sender, e) => is_running = false;
     ws.OnClose += (sender, e) => is_running = false;
     ws.Connect();
-    send_message("get_sensors", 0);
     while (is_running) {
       if (sensors != null) {
         do_monitoring();
       }
-      send_message("get_sensors", 0);
       Thread.Sleep(1000);
     }
   }
