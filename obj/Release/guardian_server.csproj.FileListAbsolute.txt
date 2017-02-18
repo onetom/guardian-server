@@ -8,13 +8,3 @@ D:\work\paul\guardian\guardian_server\bin\Release\Newtonsoft.Json.dll
 D:\work\paul\guardian\guardian_server\bin\Release\websocket-sharp.dll
 D:\work\paul\guardian\guardian_server\bin\Release\Newtonsoft.Json.pdb
 D:\work\paul\guardian\guardian_server\bin\Release\Newtonsoft.Json.xml
-D:\work\paul\guardian\git\guardian_server\bin\Release\guardian_server.exe.config
-D:\work\paul\guardian\git\guardian_server\bin\Release\guardian_server.exe
-D:\work\paul\guardian\git\guardian_server\bin\Release\guardian_server.pdb
-D:\work\paul\guardian\git\guardian_server\bin\Release\Newtonsoft.Json.dll
-D:\work\paul\guardian\git\guardian_server\bin\Release\websocket-sharp.dll
-D:\work\paul\guardian\git\guardian_server\bin\Release\Newtonsoft.Json.pdb
-D:\work\paul\guardian\git\guardian_server\bin\Release\Newtonsoft.Json.xml
-D:\work\paul\guardian\git\guardian_server\obj\Release\guardian_server.csprojResolveAssemblyReference.cache
-D:\work\paul\guardian\git\guardian_server\obj\Release\guardian_server.exe
-D:\work\paul\guardian\git\guardian_server\obj\Release\guardian_server.pdb
