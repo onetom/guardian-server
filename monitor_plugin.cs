@@ -84,6 +84,23 @@ class Program {
     return sensor_list[0]["value"];
   }
 
+  static float get_gpu_sensor_by_path(string section, string sensor_type, string sensor_name) {
+    List<dynamic> section_list = sensors[section].ToObject<List<dynamic>>();
+    if (section_list.Count != 2) {
+      return 0;
+    }
+    List<dynamic> sensor_list = section_list[1][sensor_type].ToObject<List<dynamic>>();
+    if (sensor_list.Count == 0) {
+      return 0;
+    }
+    foreach (var x in sensor_list) {
+      if (x["name"] == sensor_name) {
+        return x["value"];
+      }
+    }
+    return sensor_list[0]["value"];
+  }
+
   static float get_sensor(Effect e) {
     float x = 0;
     if (e.name == "cpu_temp") {
@@ -93,10 +110,10 @@ class Program {
       x = get_sensor_by_path("cpus", "loads", "UC");
       x = Tools.remap(x, 0, 100, 0, 1);
     } else if (e.name == "gpu_temp") {
-      x = get_sensor_by_path("gpus", "temps", "Package");
+      x = get_gpu_sensor_by_path("gpus", "temps", "GPU");
       x = Tools.remap(x, 40, 70, 0, 1);
     } else if (e.name == "gpu_load") {
-      x = get_sensor_by_path("gpus", "loads", "UC");
+      x = get_gpu_sensor_by_path("gpus", "loads", "GPU");
       x = Tools.remap(x, 0, 100, 0, 1);
     }
     return x;
