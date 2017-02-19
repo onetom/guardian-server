@@ -193,6 +193,10 @@ class CPUID {
       ref extended_error_code);
   }
 
+  public string get_drive_letter(string s) {
+    return Char.ToUpper(s[Math.Max(s.IndexOf(":") - 1, 0)]) + ":";
+  }
+
   public List<Sensor> get_sensor_list(int device_index, int sensor_class) {
     int sensor_index;
     int NbSensors;
@@ -265,6 +269,9 @@ class CPUID {
         var hdd = new HDD_sensors();
         hdd.name = devicename.Trim();
         hdd.loads = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_UTILIZATION);
+        foreach (var x in hdd.loads) {
+          x.name = get_drive_letter(x.name);
+        }
         hdd.temps = get_sensor_list(device_index, CPUIDSDK.SENSOR_CLASS_TEMPERATURE);
         hdds.Add(hdd);
       } else if (deviceclass == CPUIDSDK.CLASS_DEVICE_DISPLAY_ADAPTER) {
@@ -318,7 +325,7 @@ class CPUID {
       if (d.IsReady) {
         var hdd = new HDD_info();
         hdd.fs = d.DriveFormat;
-        hdd.letter = d.Name;
+        hdd.letter = get_drive_letter(d.Name);
         hdd.free = d.TotalFreeSpace;
         hdd.total = d.TotalSize;
         hdd.volume = d.VolumeLabel;
