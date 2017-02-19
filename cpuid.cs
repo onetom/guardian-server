@@ -73,10 +73,20 @@ public class GPU_info {
   public double memory_size;
 }
 
+public class SPD_module {
+  public int type;
+  public string format;
+  public int size;
+  public string name;
+  public string spec;
+  public string part;
+}
+
 public class Memory_info {
   public string type;
   public double size;
   public double clock;
+  public List<SPD_module> spd;
 }
 
 public class Attribute {
@@ -93,7 +103,7 @@ public class SMART_report {
 }
 
 class CPUID {
-  CPUIDSDK pSDK;
+  public CPUIDSDK pSDK;
   public bool ok = false;
 
   public Dictionary<int, string> smart_names = new Dictionary<int, string>() {
@@ -395,6 +405,18 @@ class CPUID {
     memory.type = s;
     memory.size = pSDK.GetMemorySize();
     memory.clock = pSDK.GetMemoryClockFrequency();
+    memory.spd = new List<SPD_module>();
+    int spd_modules = pSDK.GetNumberOfSPDModules();
+    for (int spd_index = 0; spd_index < spd_modules; spd_index += 1) {
+      var spd_module = new SPD_module();
+      spd_module.type = pSDK.GetSPDModuleType(spd_index);
+      spd_module.format = pSDK.GetSPDModuleFormat(spd_index);
+      spd_module.size = pSDK.GetSPDModuleSize(spd_index);
+      spd_module.name = pSDK.GetSPDModuleManufacturer(spd_index);
+      spd_module.spec = pSDK.GetSPDModuleSpecification(spd_index);
+      spd_module.part = pSDK.GetSPDModulePartNumber(spd_index);
+      memory.spd.Add(spd_module);
+    }
     return memory;
   }
 
