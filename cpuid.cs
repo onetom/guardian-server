@@ -409,11 +409,10 @@ class CPUID {
     int spd_modules = pSDK.GetNumberOfSPDModules();
     for (int spd_index = 0; spd_index < spd_modules; spd_index += 1) {
       var spd_module = new SPD_module();
-      string format = pSDK.GetSPDModuleFormat(spd_index).Trim();
       spd_module.size = pSDK.GetSPDModuleSize(spd_index);
       string name = pSDK.GetSPDModuleManufacturer(spd_index).Trim();
       string spec = pSDK.GetSPDModuleSpecification(spd_index).Trim();
-      spd_module.name = format + " " + name + " " + spec;      
+      spd_module.name = name + " " + spec;
       spd_module.part = pSDK.GetSPDModulePartNumber(spd_index).Trim();
       memory.spd.Add(spd_module);
     }
