@@ -37,6 +37,7 @@ public class GPU_sensors {
 }
 
 public class Memory_sensors {
+  public string name;
   public double free;
   public double total;
 }
@@ -239,6 +240,7 @@ class CPUID {
   public Memory_sensors get_memory_usage() {
     var memory = new Memory_sensors();
     var info = new Microsoft.VisualBasic.Devices.ComputerInfo();
+    memory.name = "Physical Memory";
     memory.total = info.TotalPhysicalMemory;
     memory.free = info.AvailablePhysicalMemory;
     return memory;
