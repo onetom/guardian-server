@@ -74,11 +74,8 @@ public class GPU_info {
 }
 
 public class SPD_module {
-  public int type;
-  public string format;
-  public int size;
   public string name;
-  public string spec;
+  public int size;
   public string part;
 }
 
@@ -409,12 +406,12 @@ class CPUID {
     int spd_modules = pSDK.GetNumberOfSPDModules();
     for (int spd_index = 0; spd_index < spd_modules; spd_index += 1) {
       var spd_module = new SPD_module();
-      spd_module.type = pSDK.GetSPDModuleType(spd_index);
-      spd_module.format = pSDK.GetSPDModuleFormat(spd_index);
+      string format = pSDK.GetSPDModuleFormat(spd_index).Trim();
       spd_module.size = pSDK.GetSPDModuleSize(spd_index);
-      spd_module.name = pSDK.GetSPDModuleManufacturer(spd_index);
-      spd_module.spec = pSDK.GetSPDModuleSpecification(spd_index);
-      spd_module.part = pSDK.GetSPDModulePartNumber(spd_index);
+      string name = pSDK.GetSPDModuleManufacturer(spd_index).Trim();
+      string spec = pSDK.GetSPDModuleSpecification(spd_index).Trim();
+      spd_module.name = format + " " + name + " " + spec;      
+      spd_module.part = pSDK.GetSPDModulePartNumber(spd_index).Trim();
       memory.spd.Add(spd_module);
     }
     return memory;
