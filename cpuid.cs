@@ -246,7 +246,7 @@ class CPUID {
     return memory;
   }
 
-  public void update_sensors(Dictionary<string, dynamic> sensors) {
+  public void update_sensors(Dictionary<string, dynamic> devices, Dictionary<string, dynamic> sensors) {
     int NbDevices;
     int device_index;
     string devicename;
@@ -297,6 +297,7 @@ class CPUID {
     sensors["hdds"] = hdds;
     sensors["gpus"] = gpus;
     sensors["memory"] = get_memory_usage();
+    sensors["memory"].name = devices["memory"].spd[0].name;
   }
 
   public List<SMART_report> get_smart_report() {

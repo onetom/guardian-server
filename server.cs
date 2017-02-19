@@ -132,7 +132,7 @@ public class Server {
   }
 
   void update_sensors() {
-    cpuid.update_sensors(sensors);
+    cpuid.update_sensors(devices, sensors);
     hw.update_sensors(sensors);
   }
 
@@ -158,8 +158,8 @@ public class Server {
     }
     Program.log.add("ok\n");
     hw = new Hardware(this);
-    update_sensors();
     update_devices();
+    update_sensors();
     sensors_timer = Stopwatch.StartNew();
     devices_timer = Stopwatch.StartNew();
     wssv = new WebSocketServer(Program.settings.port);
