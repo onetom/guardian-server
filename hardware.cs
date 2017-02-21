@@ -11,6 +11,14 @@ public class Keyboard_info {
   public int number_of_zones;
 }
 
+public class Effect {
+  public string name;
+  public string zone;
+  public List<int> color;
+  public List<int> beg_color;
+  public List<int> end_color;
+}
+
 public class Led_keyboard {
   Hardware hw;
   dynamic kb_server;
@@ -47,7 +55,20 @@ public class Led_keyboard {
     set_static_color(zones[zone]);
   }
 
+  public bool proper(dynamic effect) {
+    Effect e;
+    try {
+      e = effect.ToObject<Effect>();
+    } catch {
+      return false;
+    }
+    return true;
+  }
+
   public void set_keyboard_zones(dynamic effect) {
+    if (!proper(effect)) {
+      return;
+    }
     string name = effect["name"];
     string zone = effect["zone"];
     if (name == "static_color_from_plugin") {

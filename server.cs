@@ -47,7 +47,7 @@ public class Service : WebSocketBehavior {
     }
     try {
       message = JsonConvert.DeserializeObject<Message>(e.Data);
-    } catch (JsonSerializationException) {
+    } catch {
       return;
     }
     if (message.tag == "get_devices") {
