@@ -163,7 +163,6 @@ public class Server {
     sensors_timer = Stopwatch.StartNew();
     devices_timer = Stopwatch.StartNew();
     wssv = new WebSocketServer(Program.settings.port);
-    wssv.KeepClean = false;
   }
 }
 
