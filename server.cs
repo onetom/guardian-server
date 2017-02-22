@@ -45,6 +45,7 @@ public class Service : WebSocketBehavior {
     if (!e.IsText) {
       return;
     }
+    Program.log.add(e.Data + "\n");
     try {
       message = JsonConvert.DeserializeObject<Message>(e.Data);
     } catch {

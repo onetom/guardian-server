@@ -5,11 +5,59 @@ CPUID: ok
 hardware.json: ok
 led_keyboard: SSE
 plugin: monitor_plugin.exe
-connection: 127.0.0.1:57078
-connection: 127.0.0.1:57079
-connection: 127.0.0.1:57080
-connection: 127.0.0.1:57081
-connection: 127.0.0.1:57084
-connection: 127.0.0.1:57085
-connection: 127.0.0.1:57086
+connection: 127.0.0.1:64150
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[28,226,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[9,245,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[10,244,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[11,243,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[1,253,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[2,252,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[1,253,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[9,245,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[5,249,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[2,252,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[10,244,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[9,245,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[8,246,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[3,251,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[3,251,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[4,250,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[3,251,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[6,248,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[15,239,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[7,247,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[3,251,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[7,247,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[8,246,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[8,246,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[5,249,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[12,242,0]}}
+connection: 127.0.0.1:64151
+{"tag":"get_devices"}
+{"tag":"set_keyboard_zones","data":{"name":"cpu_load","zone":"1","color":[0,0,0],"beg_color":[0,255,0],"end_color":[255,0,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[20,234,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[26,228,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[8,246,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[8,246,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[3,251,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[7,247,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[11,243,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[9,245,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[9,245,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[4,250,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[2,252,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[6,248,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[9,245,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[9,245,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[7,247,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[7,247,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[6,248,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[5,249,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[9,245,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[21,233,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[16,238,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[4,250,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[9,245,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[15,239,0]}}
+{"tag":"set_keyboard_zones","data":{"name":"static_color_from_plugin","zone":"1","color":[5,249,0]}}
 server stopped
