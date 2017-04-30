@@ -1,1 +1,1 @@
-{"led_keyboard":{"1":{"name":"cpu_load","zone":"1","color":[0,0,0],"beg_color":[0,255,0],"end_color":[255,0,0]},"2":{"name":"static_color","zone":"2","color":[0,0,0],"beg_color":[0,0,0],"end_color":[0,0,0]},"3":{"name":"static_color","zone":"3","color":[0,0,0],"beg_color":[0,0,0],"end_color":[0,0,0]},"all":{"name":"off","zone":"all","color":[0,0,0],"beg_color":[0,0,0],"end_color":[0,0,0]}}}
+{"led_keyboard":null,"digital_storm":{"effect":"none","fan_pwm":[0,0,0,0,0,0,0],"fan_tach":[0,0,0,0,0,0,0],"fan_hue":[0,0,0,0,0,0,0],"strip_rgb_1":[0,0,0],"strip_rgb_2":[0,0,0],"uv":100}}

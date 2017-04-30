@@ -31,7 +31,9 @@ class Program {
 
   static void ui_click(object sender, EventArgs e) {
     string path = Tools.get_program_path();
-    Tools.run_process(Path.Combine(path, settings.browser_path), Path.Combine(path, settings.ui_path));
+    string browser_path = "\"" + path + "\\" + settings.browser_path + "\"";
+    string ui_path = "\"" + path + "\\" + settings.ui_path + "\"";
+    Tools.run_process(browser_path, ui_path);
   }
 
   static void exit_click(object sender, EventArgs e) {
@@ -48,13 +50,13 @@ class Program {
       MessageBox.Show("An instance of the server is already running");
       return;
     }
-    log.add("ok\n");
+    log.add_line("ok");
     log.add("settings.json: ");
     settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText("settings.json"));
-    log.add("ok\n");
+    log.add_line("ok");
     log.add("add_to_tray: ");
     add_to_tray();
-    log.add("ok\n");
+    log.add_line("ok");
     server = new Server();
     Task task = Task.Factory.StartNew(() => {
       server.run();

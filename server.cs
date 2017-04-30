@@ -37,7 +37,7 @@ public class Service : WebSocketBehavior {
   }
 
   protected override void OnOpen() {
-    Program.log.add("connection: " + Context.UserEndPoint + "\n");
+    Program.log.add_line("connection: " + Context.UserEndPoint);
   }
 
   protected override void OnMessage(MessageEventArgs e) {
@@ -45,7 +45,6 @@ public class Service : WebSocketBehavior {
     if (!e.IsText) {
       return;
     }
-    Program.log.add(e.Data + "\n");
     try {
       message = JsonConvert.DeserializeObject<Message>(e.Data);
     } catch {
@@ -95,7 +94,7 @@ public class Server {
 
   void start_plugins() {
     foreach (string file in Program.settings.plugins) {
-      Program.log.add("plugin: " + file + "\n");
+      Program.log.add_line("plugin: " + file);
       Tools.run_process(file, "");
     }
     while (wssv.WebSocketServices["/"].Sessions.Count < Program.settings.plugins.Count) {
@@ -112,7 +111,9 @@ public class Server {
     string msg_out;
     while (fifo_in.TryDequeue(out msg_in)) {
       if (msg_in.tag == "set_keyboard_zones") {
-        hw.led_keyboard.set_keyboard_zones(msg_in.data);
+        hw.lk.set_keyboard_zones(msg_in.data);
+      } else if (msg_in.tag == "update_digital_storm_state") {
+        hw.ds.update_state(msg_in.data);
       }
     }
     while (fifo_out.TryDequeue(out msg_out)) {
@@ -157,7 +158,7 @@ public class Server {
     if (!cpuid.ok) {
       Application.Exit();
     }
-    Program.log.add("ok\n");
+    Program.log.add_line("ok");
     hw = new Hardware(this);
     update_devices();
     update_sensors();

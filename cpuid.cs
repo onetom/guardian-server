@@ -297,7 +297,9 @@ class CPUID {
     sensors["hdds"] = hdds;
     sensors["gpus"] = gpus;
     sensors["memory"] = get_memory_usage();
-    sensors["memory"].name = devices["memory"].spd[0].name;
+    if (devices["memory"].spd.Count > 0) {
+      sensors["memory"].name = devices["memory"].spd[0].name;
+    }
   }
 
   public List<SMART_report> get_smart_report() {

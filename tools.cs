@@ -5,8 +5,12 @@ using System.Diagnostics;
 public class Logger {
   public string log_file;
 
-  public void add(string line) {
-    File.AppendAllText(log_file, line);
+  public void add(string text) {
+    File.AppendAllText(log_file, text);
+  }
+
+  public void add_line(string line) {
+    File.AppendAllText(log_file, line + "\r\n");
   }
 
   public Logger(string file) {

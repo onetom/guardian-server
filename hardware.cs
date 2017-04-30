@@ -11,14 +11,6 @@ public class Keyboard_info {
   public int number_of_zones;
 }
 
-public class Effect {
-  public string name;
-  public string zone;
-  public List<int> color;
-  public List<int> beg_color;
-  public List<int> end_color;
-}
-
 public class Led_keyboard {
   Hardware hw;
   dynamic kb_server;
@@ -26,6 +18,9 @@ public class Led_keyboard {
   public Keyboard_info kb_info;
 
   void set_zone_color(string zone, dynamic effect) {
+    if (kb_server == null) {
+      return;
+    }
     int z = int.Parse(zone);
     int r = effect["color"][0];
     int g = effect["color"][1];
@@ -55,18 +50,8 @@ public class Led_keyboard {
     set_static_color(zones[zone]);
   }
 
-  public bool proper(dynamic effect) {
-    Effect e;
-    try {
-      e = effect.ToObject<Effect>();
-    } catch {
-      return false;
-    }
-    return true;
-  }
-
   public void set_keyboard_zones(dynamic effect) {
-    if (!proper(effect)) {
+    if (zones == null) {
       return;
     }
     string name = effect["name"];
@@ -124,43 +109,101 @@ public class Led_keyboard {
     }
   }
 
+  public Dictionary<string, dynamic> save() {
+    return zones;
+  }
+
   public Led_keyboard(Hardware h) {
     Program.log.add("led_keyboard: ");
     hw = h;
     kb_info = new Keyboard_info();
     kb_info.name = Program.settings.led_keyboard;
-    if (kb_info.name == "SSE") {
-      kb_server = new SSE();
+    if (kb_info.name == "SSE3") {
+      kb_server = new SSE(3);
+    } else if (kb_info.name == "SSE4") {
+      kb_server = new SSE(4);
+    } else if (kb_info.name == "SSE5") {
+      kb_server = new SSE(5);
     } else if (kb_info.name == "Clevo") {
       kb_server = new Clevo();
+    } else {
+      Program.log.add_line(kb_info.name);
+      return;
     }
     kb_info.number_of_zones = kb_server.get_number_of_zones();
     zones = new Dictionary<string, dynamic>();
     set_default_effects();
-    foreach (JProperty x in hw.state["led_keyboard"]) {
-      zones[x.Name] = x.Value;
+    if (hw.state["led_keyboard"] != null) {
+      foreach (JProperty x in hw.state["led_keyboard"]) {
+        zones[x.Name] = x.Value;
+      }
     }
     restore();
-    Program.log.add(kb_info.name + "\n");
+    Program.log.add_line(kb_info.name);
+  }
+}
+
+public class Digital_storm {
+  Hardware hw;
+  Dictionary<string, dynamic> state = null;
+
+  public void update_sensors(Dictionary<string, dynamic> sensors) {
+    sensors["digital_storm"] = state;
+  }
+
+  public Dictionary<string, dynamic> save() {
+    return state;
+  }
+
+  public void set_default_state() {
+    state = new Dictionary<string, dynamic>();
+    state["effect"] = "none";
+    state["fan_pwm"] = new List<int> { 0, 0, 0, 0, 0, 0, 0 };
+    state["fan_tach"] = new List<int> { 0, 0, 0, 0, 0, 0, 0 };
+    state["fan_hue"] = new List<int> { 0, 0, 0, 0, 0, 0, 0 };
+    state["strip_rgb_1"] = new List<int> { 0, 0, 0 };
+    state["strip_rgb_2"] = new List<int> { 0, 0, 0 };
+    state["uv"] = 0;
+  }
+
+  public void update_state(dynamic s) {
+    foreach (JProperty x in s) {
+      state[x.Name] = x.Value;
+    }
+  }
+
+  public Digital_storm(Hardware h) {
+    Program.log.add("Digital_storm: ");
+    hw = h;
+    set_default_state();
+    if (hw.state["digital_storm"] != null) {
+      foreach (JProperty x in hw.state["digital_storm"]) {
+        state[x.Name] = x.Value;
+      }
+    }
+    Program.log.add_line("ok");
   }
 }
 
 public class Hardware {
   public Server server;
   public Dictionary<string, dynamic> state;
-  public Led_keyboard led_keyboard;
+  public Led_keyboard lk;
+  public Digital_storm ds;
 
   public void save() {
-    state["led_keyboard"] = led_keyboard.zones;
+    state["led_keyboard"] = lk.save();
+    state["digital_storm"] = ds.save();
     File.WriteAllText("hardware.json", JsonConvert.SerializeObject(state));
   }
 
   public void update_sensors(Dictionary<string, dynamic> sensors) {
-    led_keyboard.update_sensors(sensors);
+    lk.update_sensors(sensors);
+    ds.update_sensors(sensors);
   }
 
   public void update_devices(Dictionary<string, dynamic> devices) {
-    led_keyboard.update_devices(devices);
+    lk.update_devices(devices);
   }
 
   public Hardware(Server s) {
@@ -168,8 +211,9 @@ public class Hardware {
     state = new Dictionary<string, dynamic>();
     Program.log.add("hardware.json: ");
     state = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(File.ReadAllText("hardware.json"));
-    Program.log.add("ok\n");
-    led_keyboard = new Led_keyboard(this);
+    Program.log.add_line("ok");
+    lk = new Led_keyboard(this);
+    ds = new Digital_storm(this);
   }
 }
 

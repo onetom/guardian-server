@@ -10,6 +10,7 @@ public class SSE {
   string event_name = "RGB_ZONE_";
   string address;
   System.Timers.Timer timer;
+  int number_of_zones;
 
   class coreProps {
     public string address { get; set; }
@@ -85,7 +86,13 @@ public class SSE {
     j.Add("min_value", 0);
     j.Add("max_value", 511);
     j.Add("icon_id", 0);
-    handler.Add("device-type", "rgb-3-zone");
+    if (number_of_zones == 5) {
+      handler.Add("device-type", "rgb-5-zone");
+    } else if (number_of_zones == 4) {
+      handler.Add("device-type", "rgb-4-zone");
+    } else {
+      handler.Add("device-type", "rgb-3-zone");
+    }
     handler.Add("zone", zone);
     handler.Add("mode", "color");
     handler.Add("color", color);
@@ -119,7 +126,7 @@ public class SSE {
   }
 
   public int get_number_of_zones() {
-    return 3;
+    return number_of_zones;
   }
 
   public void set_zone_color(int zone, int r, int g, int b) {
@@ -148,13 +155,20 @@ public class SSE {
     timer.Enabled = true;
   }
 
-  public SSE() {
+  public SSE(int z) {
+    number_of_zones = z;
     get_address();
     remove_game();
     register_game();
     set_rgb_zone(0, "one");
     set_rgb_zone(1, "two");
     set_rgb_zone(2, "three");
+    if (number_of_zones == 4) {
+      set_rgb_zone(3, "four");
+    } else if (number_of_zones == 5) {
+      set_rgb_zone(3, "four");
+      set_rgb_zone(4, "five");
+    }
     set_timer();
   }
 }

@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<div id="monitor"><h1>Connecting...</h1></div><br>
+<div id="info"></div><br>
+<div id="smart"></div>
+<script src="jbog_client.js"></script>
+<script>
+function $(element) {
+  return document.querySelector(element);
+}
+
+function main() {
+  function update_monitor(hw) {
+    $("#monitor").innerHTML = JSON.stringify(hw, undefined, 2);
+  }
+
+  function update_info(hw) {
+    $("#info").innerHTML = JSON.stringify(hw, undefined, 2);
+  }
+
+  function update_smart(hw) {
+    $("#smart").innerHTML = JSON.stringify(hw, undefined, 2);
+  }
+
+  var jbog = jbog_client.make();
+
+  jbog.on("open", function (data) {
+    jbog.send_message("get_devices");
+    jbog.on("sensors", update_monitor);
+    jbog.on("devices", update_info);
+/*
+    jbog.send_message("set_keyboard_zones", {
+      name: "static_color",
+      zone: "1",
+      color: [255, 12, 0]
+    });
+    jbog.send_message("set_keyboard_zones", {
+      name: "cpu_load",
+      zone: "1",
+      color: [0, 0, 0],
+      beg_color: [0, 255, 0],
+      end_color: [255, 0, 0]
+    });
+*/
+    jbog.send_message("update_digital_storm_state", {
+      strip_rgb_1: [ 255, 0, 0 ],
+      uv: 100
+    });
+
+  });
+
+  jbog.run("127.0.0.1", 8000);
+}
+
+main();
+
+</script>
+</body>
+</html>

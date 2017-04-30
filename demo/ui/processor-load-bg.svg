@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 20.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 138.39999 138.39999"
+   xml:space="preserve"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="CPU_GPU_LOAD_ring.svg"
+   width="138.39999"
+   height="138.39999"><metadata
+     id="metadata1015"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
+     id="defs1013" /><sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1873"
+     inkscape:window-height="1176"
+     id="namedview1011"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.0217327"
+     inkscape:cx="449.01615"
+     inkscape:cy="-309.19615"
+     inkscape:window-x="1327"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1" /><style
+     type="text/css"
+     id="style3">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#333333;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#292929;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:#C32026;}
+	.st4{fill-rule:evenodd;clip-rule:evenodd;fill:#FF0000;}
+	.st5{fill:#FFFFFF;}
+	.st6{font-family:'SupriaSans-CondBold';}
+	.st7{font-size:8.674px;}
+	.st8{letter-spacing:2;}
+	.st9{fill:#C32026;}
+	.st10{font-size:16.6317px;}
+	.st11{font-size:11.6623px;}
+	.st12{font-size:9px;}
+	.st13{fill-rule:evenodd;clip-rule:evenodd;fill:#666666;}
+	.st14{font-size:12.2579px;}
+	.st15{font-size:4.928px;}
+	.st16{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:2.6131;}
+	.st17{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st18{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#FFFFFF;stroke-width:0.9998;stroke-miterlimit:2.6131;}
+	.st19{font-size:23.3966px;}
+	.st20{font-size:18.7364px;}
+	.st21{font-size:9.8164px;}
+	.st22{font-size:6.9613px;}
+	.st23{fill-rule:evenodd;clip-rule:evenodd;fill:#4D4D4D;}
+	.st24{font-size:13.3826px;}
+	.st25{font-size:7.0112px;}
+</style><circle
+     class="st17"
+     cx="69.200005"
+     cy="69.150032"
+     r="57.799999"
+     id="circle353"
+     style="clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd" /><g
+     id="g379"
+     transform="translate(-205.64541,-169.35)"><g
+       id="g381"><text
+         transform="translate(250.5379,253.1045)"
+         class="st5 st6 st19"
+         id="text383"
+         style="font-size:23.39660072px;font-family:SupriaSans-CondBold;fill:#ffffff">27%</text>
+</g><g
+       id="g385"><text
+         transform="translate(243.6171,232.3215)"
+         class="st5 st6 st14"
+         id="text387"
+         style="font-size:12.25790024px;font-family:SupriaSans-CondBold;fill:#ffffff">CPU LOAD</text>
+</g></g><g
+     id="g675"
+     transform="translate(-130.97515,-169.35)"><defs
+       id="defs677"><circle
+         id="SVGID_31_"
+         cx="270.20001"
+         cy="238.5"
+         r="58.299999" /></defs><clipPath
+       id="SVGID_32_"><use
+         xlink:href="#SVGID_31_"
+         style="overflow:visible"
+         id="use681"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" /></clipPath><g
+       id="g683"
+       clip-path="url(#SVGID_32_)"
+       transform="translate(-70,0)" /></g><g
+     id="g795"
+     transform="translate(-200.95,-169.35)"><path
+       class="st23"
+       d="m 221.2,189.6 c 27,-27 70.9,-27 97.9,0 27,27 27,70.9 0,97.9 -27,27 -70.9,27 -97.9,0 -27,-27 -27,-70.9 0,-97.9 l 0,0 z m 49,-8.3 c -31.6,0 -57.3,25.6 -57.3,57.3 0,31.6 25.6,57.3 57.3,57.3 31.6,0 57.3,-25.6 57.3,-57.3 -0.1,-31.7 -25.7,-57.3 -57.3,-57.3 z"
+       id="path797"
+       inkscape:connector-curvature="0"
+       style="clip-rule:evenodd;fill:#4d4d4d;fill-rule:evenodd" /><path
+       class="st0"
+       d="m 270.2,171.5 c -37,0 -67,30 -67,67 0,37 30,67 67,67 37,0 67,-30 67,-67 0,-37 -30,-67 -67,-67 l 0,0 z m 0,8.5 c 32.3,0 58.5,26.2 58.5,58.5 0,32.3 -26.2,58.5 -58.5,58.5 -32.3,0 -58.5,-26.2 -58.5,-58.5 0,-32.3 26.2,-58.5 58.5,-58.5 z"
+       id="path799"
+       inkscape:connector-curvature="0"
+       style="clip-rule:evenodd;fill:#333333;fill-rule:evenodd" /><path
+       class="st2"
+       d="m 317,191.7 c -25.9,-25.9 -67.8,-25.9 -93.6,0 -25.9,25.9 -25.9,67.8 0,93.6 25.9,25.9 67.8,25.9 93.6,0 25.8,-25.8 25.8,-67.7 0,-93.6 l 0,0 z m -4.9,4.9 c 23.2,23.2 23.2,60.7 0,83.9 -23.2,23.2 -60.7,23.2 -83.9,0 -23.2,-23.2 -23.2,-60.7 0,-83.9 23.2,-23.2 60.7,-23.2 83.9,0 z"
+       id="path801"
+       inkscape:connector-curvature="0"
+       style="clip-rule:evenodd;fill-rule:evenodd" /></g></svg>
