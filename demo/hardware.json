@@ -1,1 +1,1 @@
-{"led_keyboard":null,"digital_storm":{"effect":"none","fan_pwm":[0,0,0,0,0,0,0],"fan_tach":[0,0,0,0,0,0,0],"fan_hue":[0,0,0,0,0,0,0],"strip_rgb_1":[0,0,0],"strip_rgb_2":[0,0,0],"uv":100}}
+{"led_keyboard":null,"digital_storm":{"effect":"none","fan_pwm":[0,0,0,0,0,0,0],"fan_auto":0,"fan_tach":[0,0,0,0,0,0,0],"fan_hue":[0,0,0,0,0,0,0],"strip_rgb_1":[255,0,0],"strip_rgb_2":[0,0,0],"uv":100}}

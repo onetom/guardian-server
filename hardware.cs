@@ -159,6 +159,7 @@ public class Digital_storm {
     state = new Dictionary<string, dynamic>();
     state["effect"] = "none";
     state["fan_pwm"] = new List<int> { 0, 0, 0, 0, 0, 0, 0 };
+    state["fan_auto"] = 0;
     state["fan_tach"] = new List<int> { 0, 0, 0, 0, 0, 0, 0 };
     state["fan_hue"] = new List<int> { 0, 0, 0, 0, 0, 0, 0 };
     state["strip_rgb_1"] = new List<int> { 0, 0, 0 };

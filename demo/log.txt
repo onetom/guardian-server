@@ -6,6 +6,5 @@ hardware.json: ok
 led_keyboard: none
 Digital_storm: ok
 plugin: monitor_plugin.exe
-connection: 127.0.0.1:51071
-connection: 127.0.0.1:51072
-connection: 127.0.0.1:51073
+connection: 127.0.0.1:51164
+server stopped
