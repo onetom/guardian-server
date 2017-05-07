@@ -6,5 +6,5 @@
   "sensors_interval": 1000,
   "devices_interval": 15,
   "port": 8000,
-  "led_keyboard": "none"
+  "led_keyboard": "SSE3"
 }

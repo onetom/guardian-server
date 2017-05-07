@@ -3,8 +3,8 @@ settings.json: ok
 add_to_tray: ok
 CPUID: ok
 hardware.json: ok
-led_keyboard: none
+led_keyboard: SSE3
 Digital_storm: ok
 plugin: monitor_plugin.exe
-connection: 127.0.0.1:51164
-server stopped
+connection: 127.0.0.1:64416
+connection: 127.0.0.1:64417

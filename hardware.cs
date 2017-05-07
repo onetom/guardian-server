@@ -148,7 +148,9 @@ public class Digital_storm {
   Dictionary<string, dynamic> state = null;
 
   public void update_sensors(Dictionary<string, dynamic> sensors) {
-    sensors["digital_storm"] = state;
+    sensors["fans"] = state["fans"];
+    sensors["strips"] = state["strips"];
+    sensors["uv_strips"] = state["uv_strips"];
   }
 
   public Dictionary<string, dynamic> save() {
@@ -156,15 +158,40 @@ public class Digital_storm {
   }
 
   public void set_default_state() {
+    int i;
     state = new Dictionary<string, dynamic>();
-    state["effect"] = "none";
-    state["fan_pwm"] = new List<int> { 0, 0, 0, 0, 0, 0, 0 };
-    state["fan_auto"] = 0;
-    state["fan_tach"] = new List<int> { 0, 0, 0, 0, 0, 0, 0 };
-    state["fan_hue"] = new List<int> { 0, 0, 0, 0, 0, 0, 0 };
-    state["strip_rgb_1"] = new List<int> { 0, 0, 0 };
-    state["strip_rgb_2"] = new List<int> { 0, 0, 0 };
-    state["uv"] = 0;
+    state["fans"] = new List<Dictionary<string, dynamic>>();
+    state["strips"] = new List<Dictionary<string, dynamic>>();
+    state["uv_strips"] = new List<Dictionary<string, dynamic>>();
+    for (i = 0; i < 7; i += 1) {
+      var fan = new Dictionary<string, dynamic>();
+      fan["name"] = "Fan " + i;
+      fan["effect"] = "none";
+      fan["color"] = new List<int> { 0, 0, 0 };
+      fan["beg_color"] = new List<int> { 0, 0, 0 };
+      fan["end_color"] = new List<int> { 0, 0, 0 };
+      fan["pwm"] = 0;
+      fan["tach"] = 0;
+      state["fans"].Add(fan);
+    }
+    for (i = 0; i < 4; i += 1) {
+      var strip = new Dictionary<string, dynamic>();
+      strip["name"] = "Strip " + i;
+      strip["effect"] = "none";
+      strip["color"] = new List<int> { 0, 0, 0 };
+      strip["beg_color"] = new List<int> { 0, 0, 0 };
+      strip["end_color"] = new List<int> { 0, 0, 0 };
+      state["strips"].Add(strip);
+    }
+    for (i = 0; i < 2; i += 1) {
+      var uv = new Dictionary<string, dynamic>();
+      uv["name"] = "UV Strip " + i;
+      uv["effect"] = "none";
+      uv["color"] = new List<int> { 0, 0, 0 };
+      uv["beg_color"] = new List<int> { 0, 0, 0 };
+      uv["end_color"] = new List<int> { 0, 0, 0 };
+      state["uv_strips"].Add(uv);
+    }
   }
 
   public void update_state(dynamic s) {
