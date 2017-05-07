@@ -172,6 +172,7 @@ public class Digital_storm {
       fan["end_color"] = new List<int> { 0, 0, 0 };
       fan["pwm"] = 0;
       fan["tach"] = 0;
+      fan["auto"] = 0;
       state["fans"].Add(fan);
     }
     for (i = 0; i < 4; i += 1) {
