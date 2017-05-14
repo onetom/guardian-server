@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A1858CC7-94EF-4A3C-B898-D3B58DF944F2}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>guardian_server</RootNamespace>
     <AssemblyName>guardian_server</AssemblyName>
@@ -54,6 +54,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="hw_monitor.cs" />
+    <Compile Include="hw_keyboard.cs" />
+    <Compile Include="hw_ds_board.cs" />
     <Compile Include="hardware.cs" />
     <Compile Include="kb_sse.cs" />
     <Compile Include="kb_clevo.cs" />

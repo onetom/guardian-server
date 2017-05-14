@@ -21,7 +21,7 @@ class Settings {
   public int port { get; set; }
   public int sensors_interval { get; set; }
   public int devices_interval { get; set; }
-  public string led_keyboard { get; set; }
+  public string keyboard { get; set; }
 }
 
 public class Message {
@@ -63,7 +63,6 @@ public class Service : WebSocketBehavior {
 }
 
 public class Server {
-  CPUID cpuid;
   public Dictionary<string, dynamic> sensors;
   public Dictionary<string, dynamic> devices;
   Stopwatch sensors_timer;
@@ -83,12 +82,12 @@ public class Server {
   void update() {
     if (sensors_timer.ElapsedMilliseconds > Program.settings.sensors_interval) {
       sensors_timer.Restart();
-      update_sensors();
+      hw.update_sensors();
       wssv.WebSocketServices["/"].Sessions.Broadcast(make_message("sensors", sensors));
     }
     if (devices_timer.ElapsedMilliseconds > (1000 * 60 * Program.settings.devices_interval)) {
       devices_timer.Restart();
-      update_devices();
+      hw.update_devices();
     }
   }
 
@@ -110,11 +109,7 @@ public class Server {
     Message msg_in;
     string msg_out;
     while (fifo_in.TryDequeue(out msg_in)) {
-      if (msg_in.tag == "set_keyboard_zones") {
-        hw.lk.set_keyboard_zones(msg_in.data);
-      } else if (msg_in.tag == "update_digital_storm_state") {
-        hw.ds.update_state(msg_in.data);
-      }
+      hw.get_message(msg_in.tag, msg_in.data);
     }
     while (fifo_out.TryDequeue(out msg_out)) {
       wssv.WebSocketServices["/"].Sessions.Broadcast(msg_out);
@@ -133,16 +128,6 @@ public class Server {
     wssv.Stop();
   }
 
-  void update_sensors() {
-    cpuid.update_sensors(devices, sensors);
-    hw.update_sensors(sensors);
-  }
-
-  void update_devices() {
-    cpuid.update_devices(devices);
-    hw.update_devices(devices);
-  }
-
   void on_exit(object sender, EventArgs e) {
     hw.save();
   }
@@ -153,15 +138,9 @@ public class Server {
     fifo_out = new ConcurrentQueue<string>();
     sensors = new Dictionary<string, dynamic>();
     devices = new Dictionary<string, dynamic>();
-    Program.log.add("CPUID: ");
-    cpuid = new CPUID();
-    if (!cpuid.ok) {
-      Application.Exit();
-    }
-    Program.log.add_line("ok");
     hw = new Hardware(this);
-    update_devices();
-    update_sensors();
+    hw.update_devices();
+    hw.update_sensors();
     sensors_timer = Stopwatch.StartNew();
     devices_timer = Stopwatch.StartNew();
     wssv = new WebSocketServer(Program.settings.port);

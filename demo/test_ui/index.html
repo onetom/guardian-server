@@ -32,21 +32,10 @@ function main() {
     jbog.send_message("get_devices");
     jbog.on("sensors", update_monitor);
     jbog.on("devices", update_info);
-/*
-    jbog.send_message("set_keyboard_zones", {
-      name: "static_color",
-      zone: "1",
-      color: [255, 12, 0]
-    });
-    jbog.send_message("set_keyboard_zones", {
-      name: "cpu_load",
-      zone: "1",
-      color: [0, 0, 0],
-      beg_color: [0, 255, 0],
-      end_color: [255, 0, 0]
-    });
-*/
-    jbog.send_message("update_digital_storm_state", {
+
+    jbog.send_message("fans", {
+      name: "Fan 1",
+      effect: "Some effect"
     });
 
   });

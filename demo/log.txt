@@ -1,9 +1,12 @@
 one_instance: ok
 settings.json: ok
 add_to_tray: ok
-CPUID: ok
 hardware.json: ok
-led_keyboard: SSE3
-Digital_storm: ok
+Monitor: ok
+keyboard: none
+DS_Board: ok
 plugin: monitor_plugin.exe
-connection: 127.0.0.1:64681
+connection: 127.0.0.1:61602
+connection: 127.0.0.1:61601
+connection: 127.0.0.1:61603
+server stopped

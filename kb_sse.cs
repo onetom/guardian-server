@@ -130,11 +130,10 @@ public class SSE {
   }
 
   public void set_zone_color(int zone, int r, int g, int b) {
-    Console.WriteLine(String.Format("zone: {0}, color: {1}, {2}, {3}", zone, r, g, b));
     r >>= 5;
     g >>= 5;
     b >>= 5;
-    Console.WriteLine(send_event(event_name + zone, r | (g << 3) | (b << 6)));
+    send_event(event_name + zone, r | (g << 3) | (b << 6));
   }
 
   public void send_ping() {
