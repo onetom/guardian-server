@@ -120,10 +120,10 @@ public class Server {
     wssv.AddWebSocketService<Service>("/", () => new Service(this));
     wssv.Start();
     start_plugins();
-    while (Program.is_running) {
+    while (Program.is_running) {    
       update();
       process_messages();
-      Thread.Sleep(10);
+      Thread.Sleep(100);
     }
     wssv.Stop();
   }

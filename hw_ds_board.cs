@@ -30,9 +30,9 @@ public class DS_Board {
       var fan = new Dictionary<string, dynamic>();
       fan["name"] = "Fan " + (i + 1);
       fan["effect"] = "none";
-      fan["color"] = new List<int> { 0, 0, 0 };
-      fan["beg_color"] = new List<int> { 0, 0, 0 };
-      fan["end_color"] = new List<int> { 0, 0, 0 };
+      fan["color"] = new List<float?> { 0, null, null };
+      fan["beg_color"] = new List<float?> { 0, null, null };
+      fan["end_color"] = new List<float?> { 0, null, null };
       fan["pwm"] = 0;
       fan["tach"] = 0;
       fan["auto"] = 0;
@@ -42,18 +42,18 @@ public class DS_Board {
       var strip = new Dictionary<string, dynamic>();
       strip["name"] = "Strip " + (i + 1);
       strip["effect"] = "none";
-      strip["color"] = new List<int> { 0, 0, 0 };
-      strip["beg_color"] = new List<int> { 0, 0, 0 };
-      strip["end_color"] = new List<int> { 0, 0, 0 };
+      strip["color"] = new List<float?> { 0, 0, 0 };
+      strip["beg_color"] = new List<float?> { 0, 0, 0 };
+      strip["end_color"] = new List<float?> { 0, 0, 0 };
       state["strips"].Add(strip);
     }
     for (i = 0; i < 2; i += 1) {
       var uv = new Dictionary<string, dynamic>();
       uv["name"] = "UV Strip " + (i + 1);
       uv["effect"] = "none";
-      uv["color"] = new List<int> { 0, 0, 0 };
-      uv["beg_color"] = new List<int> { 0, 0, 0 };
-      uv["end_color"] = new List<int> { 0, 0, 0 };
+      uv["color"] = new List<float?> { null, null, 0 };
+      uv["beg_color"] = new List<float?> { null, null, 0 };
+      uv["end_color"] = new List<float?> { null, null, 0 };
       state["uv_strips"].Add(uv);
     }
   }
@@ -67,8 +67,15 @@ public class DS_Board {
   public void update_fan(dynamic fan) {
     int i;
     for (i = 0; i < state["fans"].Count; i += 1) {
-      if (fan.name == state["fans"][i].name) {
-        update_obj(fan, state["fans"][i]);
+      var x = state["fans"][i];
+      if (fan["name"] == x["name"]) {
+        update_obj(fan, x);
+        x["color"][1] = null;
+        x["color"][2] = null;
+        x["beg_color"][1] = null;
+        x["beg_color"][2] = null;
+        x["end_color"][1] = null;
+        x["end_color"][2] = null;
       }
     }
   }
@@ -76,8 +83,9 @@ public class DS_Board {
   public void update_strip(dynamic strip) {
     int i;
     for (i = 0; i < state["strips"].Count; i += 1) {
-      if (strip.name == state["strips"][i].name) {
-        update_obj(strip, state["strips"][i]);
+      var x = state["strips"][i];
+      if (strip["name"] == x["name"]) {
+        update_obj(strip, x);
       }
     }
   }
@@ -85,8 +93,15 @@ public class DS_Board {
   public void update_uv_strip(dynamic uv_strip) {
     int i;
     for (i = 0; i < state["uv_strips"].Count; i += 1) {
-      if (uv_strip.name == state["uv_strips"][i].name) {
-        update_obj(uv_strip, state["uv_strips"][i]);
+      var x = state["uv_strips"][i];
+      if (uv_strip["name"] == x["name"]) {
+        update_obj(uv_strip, x);
+        x["color"][0] = null;
+        x["color"][1] = null;
+        x["beg_color"][0] = null;
+        x["beg_color"][1] = null;
+        x["end_color"][0] = null;
+        x["end_color"][1] = null;
       }
     }
   }
