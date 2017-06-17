@@ -71,6 +71,7 @@ public class Server {
   WebSocketServer wssv { get; set; }
   public ConcurrentQueue<Message> fifo_in;
   public ConcurrentQueue<string> fifo_out;
+  bool send_sensors_now = false;
 
   public string make_message(string tag, dynamic data) {
     var message = new Message();
@@ -83,8 +84,7 @@ public class Server {
     if (sensors_timer.ElapsedMilliseconds > Program.settings.sensors_interval) {
       sensors_timer.Restart();
       hw.update_sensors();
-      sensors["time"] = DateTime.UtcNow;
-      wssv.WebSocketServices["/"].Sessions.Broadcast(make_message("sensors", sensors));
+      send_sensors_now = true;
     }
     if (devices_timer.ElapsedMilliseconds > (1000 * 60 * Program.settings.devices_interval)) {
       devices_timer.Restart();
@@ -106,15 +106,25 @@ public class Server {
     fifo_out.Enqueue(make_message(tag, data));
   }
 
+  void send_sensors() {
+    if (send_sensors_now) {
+      sensors["time"] = DateTime.UtcNow;
+      wssv.WebSocketServices["/"].Sessions.Broadcast(make_message("sensors", sensors));
+      send_sensors_now = false;
+    }
+  }
+
   void process_messages() {
     Message msg_in;
     string msg_out;
     while (fifo_in.TryDequeue(out msg_in)) {
       hw.get_message(msg_in.tag, msg_in.data);
+      send_sensors_now = true;
     }
     while (fifo_out.TryDequeue(out msg_out)) {
       wssv.WebSocketServices["/"].Sessions.Broadcast(msg_out);
     }
+    send_sensors();
   }
 
   public void run() {

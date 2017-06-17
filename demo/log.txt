@@ -6,6 +6,6 @@ Monitor: ok
 keyboard: none
 DS_Board: ok
 plugin: monitor_plugin.exe
-connection: 127.0.0.1:52742
-connection: 127.0.0.1:52743
+connection: 127.0.0.1:53828
+connection: 127.0.0.1:53827
 server stopped
