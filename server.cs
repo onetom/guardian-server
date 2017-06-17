@@ -83,6 +83,7 @@ public class Server {
     if (sensors_timer.ElapsedMilliseconds > Program.settings.sensors_interval) {
       sensors_timer.Restart();
       hw.update_sensors();
+      sensors["time"] = DateTime.UtcNow;
       wssv.WebSocketServices["/"].Sessions.Broadcast(make_message("sensors", sensors));
     }
     if (devices_timer.ElapsedMilliseconds > (1000 * 60 * Program.settings.devices_interval)) {
