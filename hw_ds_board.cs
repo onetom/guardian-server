@@ -60,6 +60,7 @@ public class DS_Board {
       fan["pwm"] = 0;
       fan["tach"] = 0;
       fan["auto"] = 0;
+      fan["temp"] = 40;
       state["fans"].Add(fan);
     }
     for (i = 0; i < 4; i += 1) {
