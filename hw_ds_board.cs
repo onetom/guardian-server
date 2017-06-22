@@ -58,7 +58,7 @@ public class DS_Board {
       fan["beg_color"] = as_fan_color(default_beg_color());
       fan["end_color"] = as_fan_color(default_end_color());
       fan["pwm"] = 0;
-      fan["tach"] = 0;
+      fan["rpm"] = 0;
       fan["auto"] = 0;
       fan["temp"] = 40;
       state["fans"].Add(fan);
