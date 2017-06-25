@@ -8,7 +8,7 @@ namespace guardian_server {
 
 public class DS_Board {
   Hardware hw;
-  Dictionary<string, dynamic> state = null;
+  Dictionary<string, dynamic> state;
 
   public void update_sensors() {
     hw.server.sensors["fans"] = state["fans"];
@@ -40,7 +40,7 @@ public class DS_Board {
 
   public dynamic as_uv_color(dynamic color) {
     color[0] = null;
-    color[1] = null;
+    color[2] = null;
     return color;
   }
 
